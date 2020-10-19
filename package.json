@@ -1,0 +1,25 @@
+{
+    "name": "ait2_petless",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "watch-sass": "sass --watch ./css/main.scss:./css/main.css",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/glendumo/ait2_petless.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/glendumo/ait2_petless/issues"
+    },
+    "homepage": "https://github.com/glendumo/ait2_petless/dogsList.php",
+    "dependencies": {
+        "bootstrap": "^4.5.3",
+        "sass": "^1.27.0"
+    }
+}
