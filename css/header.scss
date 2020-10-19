@@ -1,0 +1,44 @@
+.nav {
+    background-color: $primary;
+    padding: 20px 40px;
+    & a {
+        color: $secundary;
+    }
+    &_logo {
+        font-size: 3rem;
+        color: black;
+        text-transform: uppercase;
+        & a {
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+    &_pages {
+        &_top {
+            & p {
+                color: black;
+                margin-left: 75px;
+                & a {
+                    margin-left: 0;
+                }
+            }
+        }
+        &_bottom {
+            & a {
+                margin-left: 50px;
+            }
+        }
+        & a {
+            transition: all 0.3s ease-in-out;
+            &:hover {
+                color: white;
+                text-decoration: none;
+            }
+            &.active {
+                color: white;
+                text-decoration: underline;
+            }
+        }
+    }
+}

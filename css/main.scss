@@ -2,9 +2,9 @@ $primary: #2176d2;
 $secundary: #081e35;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
-// @import "./header.scss";
-// @import "./footer.scss";
-// @import "./listPage.scss";
+@import "./header.scss";
+@import "./footer.scss";
+@import "./listPage.scss";
 // @import "./detailPage.scss";
 
 body {

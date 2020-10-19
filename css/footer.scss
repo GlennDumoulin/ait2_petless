@@ -1,0 +1,40 @@
+.footer {
+    &_wrapper {
+        margin-top: 75px;
+        background-color: $primary;
+        & h1 {
+            font-size: 2rem;
+        }
+        & a {
+            color: $secundary;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+                color: white;
+                text-decoration: none;
+            }
+        }
+    }
+    &_main {
+        padding: 50px 0;
+        & p {
+            color: black;
+        }
+    }
+    &_socials {
+        & a {
+            padding-bottom: 10px;
+        }
+        @media (max-width: 991px) {
+            margin-top: 20px;
+        }
+    }
+    &_legal {
+        background-color: #2062aa;
+        & p {
+            margin-bottom: 0;
+            &:last-of-type {
+                padding-left: 50px;
+            }
+        }
+    }
+}
