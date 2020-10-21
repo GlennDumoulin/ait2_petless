@@ -1,15 +1,21 @@
 .filter_wrapper {
     height: 500px;
-    background-image: url(../images/dogslist_bg.jpg);
+    background-image: url(../images/andere_bg.jpg);
+    &.hond_bg {
+        background-image: url(../images/hond_bg.jpg);
+    }
+    &.kat_bg {
+        background-image: url(../images/kat_bg.jpg);
+    }
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    padding: 150px 0;
+    padding-top: 100px;
     & .filter_form {
         background-color: white;
         border: 4px solid $primary;
-        border-radius: 20px;
+        border-radius: 0 0 20px 20px;
         padding: 20px 40px;
         & input {
             border: none;
@@ -34,15 +40,20 @@
             width: 100%;
             color: white;
             & .item_content {
+                position: relative;
                 border: 2px solid black;
                 border-radius: 20px;
-                height: 200px;
-                background-image: url(../images/dogslist_bg.jpg);
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
+                height: auto;
+                & img {
+                    width: 100%;
+                    height: auto;
+                    border-radius: 20px;
+                }
                 transition: all 0.3s ease-in-out;
                 & .overlay {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
                     background-color: #303030;
                     opacity: 0.4;
                     width: 100%;
@@ -53,7 +64,7 @@
                 & .race {
                     position: absolute;
                     top: 10px;
-                    left: 30px;
+                    left: 15px;
                     font-size: 1.5rem;
                     @media (max-width: 991px) {
                         font-size: 1.2rem;
@@ -62,12 +73,12 @@
                 & .bookmark {
                     position: absolute;
                     top: 10px;
-                    right: 30px;
+                    right: 15px;
                 }
                 & .info {
                     position: absolute;
                     bottom: 10px;
-                    left: 30px;
+                    left: 15px;
                     & p {
                         margin-bottom: 0;
                         @media (max-width: 991px) {
@@ -91,12 +102,14 @@
 .pagination {
     width: 150px;
     margin: 0 auto;
-    & p {
+    & a {
+        color: black;
         font-size: 1.3rem;
         margin-bottom: 0;
         transition: all 0.3s ease-in-out;
         &:hover {
             color: $primary;
+            text-decoration: none;
             cursor: default;
         }
         &.active {

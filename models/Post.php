@@ -17,34 +17,41 @@ class Post extends BaseModel {
     public $created_on;
 
 
-    public function getByType($type) {
+    public function getByType($type, $offset, $perPage) {
         global $db;
 
         $sql = 'SELECT *
         FROM `' . $this->table . '`
-        WHERE `type` == :type
-        ORDER BY `created_on` DESC';
+        WHERE `type` = :type
+        ORDER BY `created_on` DESC
+        LIMIT :offset, :perPage';
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->execute(
             [
-                ':type' => $type
+                ':type' => $type,
+                ':offset' => $offset,
+                ':perPage' => $perPage
             ]
         );
         return $pdo_statement->fetchAll();
 
     }
 
-    public function getOtherTypes() {
+    public function getOtherTypes($offset, $perPage) {
         global $db;
 
         $sql = 'SELECT *
         FROM `' . $this->table . '`
-        WHERE `type` != dog || cat
-        ORDER BY `created_on` DESC';
+        WHERE `type` != :hond AND `type` != :kat
+        ORDER BY `created_on` DESC
+        LIMIT :offset, :perPage';
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->execute(
             [
-                ':type' => $type
+                ':hond' => 'hond',
+                ':kat' => 'kat',
+                ':offset' => $offset,
+                ':perPage' => $perPage
             ]
         );
         return $pdo_statement->fetchAll();

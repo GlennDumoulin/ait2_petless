@@ -16,12 +16,24 @@
                 <?php
 
                     foreach ($all_pages as $page) {
-                        if ($page['template'] == "home") {
-                            echo '<a href="./index.php?p_id=' . $page['page_id'] . '"><i data-feather="home"></i></a>';
-                        } else if ($page['page_id'] == $current_page->page_id) {
-                            echo '<a href="./index.php?p_id=' . $page['page_id'] . '" class="active">' . $page['name'] . '</a>';
-                        } else {
-                            echo '<a href="./index.php?p_id=' . $page['page_id'] . '">' . $page['name'] . '</a>';
+                        switch($page['template']) {
+                            case 'home':
+                                echo '<a href="./index.php?p_id=' . $page['page_id'] . '"><i data-feather="home"></i></a>';
+                                break;
+                            case 'posts':
+                                if ($page['page_id'] == $current_page->page_id) {
+                                    echo '<a href="./index.php?p_id=' . $page['page_id'] . '&type=' . $page['type'] . '" class="active">' . $page['name'] . '</a>';
+                                } else {
+                                    echo '<a href="./index.php?p_id=' . $page['page_id'] . '&type=' . $page['type'] . '">' . $page['name'] . '</a>';
+                                }
+                                break;
+                            default :
+                                if ($page['page_id'] == $current_page->page_id) {
+                                    echo '<a href="./index.php?p_id=' . $page['page_id'] . '" class="active">' . $page['name'] . '</a>';
+                                } else {
+                                    echo '<a href="./index.php?p_id=' . $page['page_id'] . '">' . $page['name'] . '</a>';
+                                }
+                                break;
                         }
                     }
 

@@ -7,6 +7,7 @@
 <div class="dogs_list_item col-6 col-md-4">
     <a href="./detail.php">
         <div class="item_content">
+            <img src="images/<?= $post->image ?>">
             <div class="overlay"></div>
             <h1 class="race"><?= $post->race ?></h1>
             <i data-feather="bookmark" class="bookmark"></i>

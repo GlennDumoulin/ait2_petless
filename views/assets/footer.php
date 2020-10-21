@@ -16,7 +16,14 @@
                     <?php
 
                         foreach ($all_pages as $page) {
-                            echo '<a href="./index.php?p_id=' . $page['page_id'] . '">' . $page['name'] . '</a>';
+                            switch($page['template']) {
+                                case 'posts':
+                                    echo '<a href="./index.php?p_id=' . $page['page_id'] . '&type=' . $page['type'] . '">' . $page['name'] . '</a>';
+                                    break;
+                                default :
+                                    echo '<a href="./index.php?p_id=' . $page['page_id'] . '">' . $page['name'] . '</a>';
+                                    break;
+                            }
                         }
 
                     ?>

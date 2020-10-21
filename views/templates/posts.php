@@ -1,3 +1,64 @@
+<?php
+
+    $type = $_GET['type'] ?? '';
+
+    $post_model = new Post();
+
+    include 'views/assets/pagination.php';
+
+?>
+
 <main>
-    <h1><?= $current_page->title ?></h1>
+    <div class="filter_wrapper <?= $type ?>_bg">
+        <form
+            method="POST"
+            class="filter_form d-flex justify-content-between align-items-center"
+        >
+            <?php if ($type == 'andere') : ?>
+                <div class="filter_item">
+                    <label for="type">Type</label><br />
+                    <input type="text" name="type" />
+                </div>
+            <?php endif; ?>
+            <div class="filter_item">
+                <label for="race">Ras</label><br />
+                <input type="text" name="race" />
+            </div>
+            <div class="filter_item">
+                <label for="location">Locatie</label><br />
+                <input type="text" name="location" />
+            </div>
+            <select name="sort_by_date">
+                <option value="recent_first">Recentste eerst</option>
+                <option value="oldest_first">Oudste eerst</option>
+            </select>
+            <select name="status">
+                <option value="found">Gevonden</option>
+                <option value="lost">Verloren</option>
+            </select>
+            <button type="submit" class="btn btn-primary">
+                <i data-feather="search"></i> Zoeken
+            </button>
+        </form>
+    </div>
+    <div class="container">
+        <div class="dogs_list row justify-content-around align-items-center">
+            <?php
+
+                if ($links) {
+                    foreach ($posts as $post) {
+                        include 'views/assets/post.php';
+                    }
+                } else {
+                    echo "Er werden geen posts gevonden.";
+                }
+
+            ?>
+        </div>
+        <div
+            class="pagination d-flex justify-content-between align-items-center"
+        >
+            <?= $links ?>
+        </div>
+    </div>
 </main>

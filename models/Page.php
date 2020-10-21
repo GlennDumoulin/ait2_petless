@@ -12,12 +12,13 @@ class Page extends BaseModel {
     public $content;
     public $page_order;
     public $template;
+    public $type;
 
 
     private function getAll() {
         global $db;
 
-        $sql = 'SELECT `' . $this->pk . '`, `slug`, `name` FROM `' . $this->table . '` ORDER BY `page_order`';
+        $sql = 'SELECT `' . $this->pk . '`, `slug`, `name`, `type` FROM `' . $this->table . '` ORDER BY `page_order`';
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->execute();
         return $pdo_statement->fetchAll();
@@ -47,12 +48,13 @@ class Page extends BaseModel {
             ':content' => $this->content,
             ':page_order' => $this->page_order,
             ':template' => $this->template,
+            ':type' => $this->type,
         ];
 
         if( $this->page_id > 0 ) {
             //update
             $sql = 'UPDATE `' . $this->table . '` 
-                    SET `name` = :name, `slug` = :slug, `title` = :title, `content` = :content, `page_order` = :page_order, `template` = :template
+                    SET `name` = :name, `slug` = :slug, `title` = :title, `content` = :content, `page_order` = :page_order, `template` = :template, `type` = :type
                     WHERE `' . $this->pk . '` = :page_id ';
 
             $data['page_id'] = $this->page_id;
@@ -62,8 +64,8 @@ class Page extends BaseModel {
             
         } else {
             //insert
-            $sql = 'INSERT INTO `' . $this->table . '` (`name`, `slug`, `title`, `content`, `page_order`, `template`)
-                    VALUES (:name, :slug, :title, :content, :page_order, :template)';
+            $sql = 'INSERT INTO `' . $this->table . '` (`name`, `slug`, `title`, `content`, `page_order`, `template`, `type`)
+                    VALUES (:name, :slug, :title, :content, :page_order, :template, :type)';
 
             $insert_statement = $db->prepare($sql);
             $insert_statement->execute( $data );
