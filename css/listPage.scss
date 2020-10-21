@@ -70,6 +70,9 @@
                     left: 30px;
                     & p {
                         margin-bottom: 0;
+                        @media (max-width: 991px) {
+                            font-size: 0.8rem;
+                        }
                     }
                 }
             }

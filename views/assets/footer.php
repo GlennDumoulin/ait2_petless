@@ -13,12 +13,13 @@
                 <div class="footer_sitemap">
                     <h1>Sitemap</h1>
                     <nav class="d-flex justify-content-between">
-                        <a href="#">home</a>
-                        <a href="./dogslist.php">honden</a>
-                        <a href="#">katten</a>
-                        <a href="#">andere</a>
-                        <a href="#">dier gevonden?</a>
-                        <a href="#">contact</a>
+                    <?php
+
+                        foreach ($all_pages as $page) {
+                            echo '<a href="./index.php?p_id=' . $page['page_id'] . '">' . $page['name'] . '</a>';
+                        }
+
+                    ?>
                     </nav>
                 </div>
             </div>

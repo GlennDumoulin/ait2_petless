@@ -10052,6 +10052,11 @@ h3 {
 .dogs_list_item a .item_content .info p {
   margin-bottom: 0;
 }
+@media (max-width: 991px) {
+  .dogs_list_item a .item_content .info p {
+    font-size: 0.8rem;
+  }
+}
 .dogs_list_item a:hover .item_content {
   border: 2px solid #2176d2;
 }
@@ -10080,9 +10085,44 @@ h3 {
   color: #959595;
 }
 
+.detail_wrapper {
+  position: relative;
+  margin: 75px 0;
+}
+.detail_wrapper .back_btn {
+  position: absolute;
+  top: -50px;
+  left: 50px;
+  color: black;
+  transition: all 0.3s ease-in-out;
+}
+.detail_wrapper .back_btn:hover {
+  color: #2176d2;
+}
+.detail_wrapper .content_item {
+  padding: 5px 10px;
+  margin-bottom: 20px;
+  border: 2px solid black;
+  border-radius: 20px;
+}
+.detail_wrapper .image img {
+  width: 100%;
+  height: auto;
+  border: 2px solid black;
+  border-radius: 20px;
+}
+.detail_wrapper .detail_buttons button {
+  margin: 20px 30px 0;
+  border: 2px solid black;
+}
+
 body {
   font-family: "Roboto", sans-serif;
   overflow-x: hidden;
+}
+
+h1 {
+  font-size: 2rem;
 }
 
 /*# sourceMappingURL=main.css.map */

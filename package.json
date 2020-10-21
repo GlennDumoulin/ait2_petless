@@ -17,7 +17,7 @@
     "bugs": {
         "url": "https://github.com/glendumo/ait2_petless/issues"
     },
-    "homepage": "https://github.com/glendumo/ait2_petless/dogsList.php",
+    "homepage": "https://github.com/glendumo/ait2_petless/index.php",
     "dependencies": {
         "bootstrap": "^4.5.3",
         "sass": "^1.27.0"
