@@ -26,7 +26,7 @@
             </div>
             <div class="filter_item">
                 <label for="location">Locatie</label><br />
-                <input type="text" name="location" />
+                <input type="text" name="location" placeholder="postcode + gemeente" />
             </div>
             <select name="sort_by_date">
                 <option value="recent_first">Recentste eerst</option>
