@@ -1,6 +1,9 @@
 .detail_wrapper {
     position: relative;
     margin: 75px 0;
+    & h1 {
+        margin-bottom: 20px;
+    }
     & .back_btn {
         position: absolute;
         top: -50px;
@@ -12,22 +15,23 @@
         }
     }
     & .content_item {
-        padding: 5px 10px;
-        margin-bottom: 20px;
+        padding: 20px 0;
         border: 2px solid black;
         border-radius: 20px;
     }
     & .image {
+        height: 400px;
         & img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             border: 2px solid black;
             border-radius: 20px;
         }
     }
     & .detail_buttons {
         & button {
-            margin: 20px 30px 0;
+            margin: 50px 30px 0;
             border: 2px solid black;
         }
     }

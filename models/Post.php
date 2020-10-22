@@ -78,7 +78,7 @@ class Post extends BaseModel {
 
     }
 
-    public function getById($id) {
+    public function getById($post_id) {
         global $db;
 
         $sql = 'SELECT * FROM `' . $this->table . '` WHERE `' . $this->pk . '` = :p_id';

@@ -34,7 +34,7 @@
             </select>
             <select name="status">
                 <option value="found">Gevonden</option>
-                <option value="lost">Verloren</option>
+                <option value="lost">Gezocht</option>
             </select>
             <button type="submit" class="btn btn-primary">
                 <i data-feather="search"></i> Zoeken
