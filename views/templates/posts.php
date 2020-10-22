@@ -42,15 +42,13 @@
         </form>
     </div>
     <div class="container">
-        <div class="dogs_list row justify-content-around align-items-center">
+        <div class="dogs_list row">
             <?php
 
-                if ($links) {
+                if ($posts) {
                     foreach ($posts as $post) {
                         include 'views/assets/post.php';
                     }
-                } else {
-                    echo "Er werden geen posts gevonden.";
                 }
 
             ?>
@@ -58,7 +56,17 @@
         <div
             class="pagination d-flex justify-content-between align-items-center"
         >
-            <?= $links ?>
+            <?php
+
+                if ($links == NULL) {
+                    echo "<p>Er werden geen posts gevonden.</p>";
+                } elseif ($totalPages == 1) {
+                    echo "";
+                } else {
+                    echo $links;
+                }
+
+            ?>
         </div>
     </div>
 </main>

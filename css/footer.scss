@@ -4,6 +4,7 @@
         background-color: $primary;
         & h1 {
             font-size: 2rem;
+            color: white;
         }
         & a {
             color: $secundary;
@@ -20,21 +21,22 @@
             color: black;
         }
     }
+    &_login {
+        margin-bottom: 50px;
+    }
     &_socials {
         & a {
             padding-bottom: 10px;
         }
         @media (max-width: 991px) {
-            margin-top: 20px;
+            margin-top: 50px;
         }
     }
     &_legal {
-        background-color: #2062aa;
+        background-color: #659bd4;
+        padding: 5px 0;
         & p {
             margin-bottom: 0;
-            &:last-of-type {
-                padding-left: 50px;
-            }
         }
     }
 }

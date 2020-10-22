@@ -44,8 +44,12 @@
             </div>
         </div>
     </div>
-    <div class="footer_legal d-flex justify-content-center">
-        <p>©2020</p>
-        <p>gemaakt door Glenn Dumoulin</p>
+    <div class="footer_legal">
+        <div class="container">
+            <div class="row">
+                <p class="col-12 col-md-6">©2020</p>
+                <p class="col-12 col-md-6">gemaakt door Glenn Dumoulin</p>
+            </div>
+        </div>
     </div>
 </footer>

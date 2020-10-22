@@ -40,13 +40,15 @@
             width: 100%;
             color: white;
             & .item_content {
+                text-shadow: black 2px -2px 2px;
                 position: relative;
                 border: 2px solid black;
                 border-radius: 20px;
-                height: auto;
+                height: 300px;
                 & img {
                     width: 100%;
-                    height: auto;
+                    height: 100%;
+                    object-fit: cover;
                     border-radius: 20px;
                 }
                 transition: all 0.3s ease-in-out;
@@ -54,8 +56,12 @@
                     position: absolute;
                     top: 0;
                     left: 0;
-                    background-color: #303030;
-                    opacity: 0.4;
+                    background: linear-gradient(
+                        rgba(0, 0, 0, 0.5) 0%,
+                        rgba(0, 0, 0, 0) 10%,
+                        rgba(0, 0, 0, 0) 50%,
+                        rgba(0, 0, 0, 0.7) 100%
+                    );
                     width: 100%;
                     height: 100%;
                     border-radius: 20px;
@@ -92,32 +98,9 @@
                     border: 2px solid $primary;
                 }
                 & .overlay {
-                    opacity: 0.7;
+                    opacity: 0;
                 }
             }
-        }
-    }
-}
-
-.pagination {
-    width: 150px;
-    margin: 0 auto;
-    & a {
-        color: black;
-        font-size: 1.3rem;
-        margin-bottom: 0;
-        transition: all 0.3s ease-in-out;
-        &:hover {
-            color: $primary;
-            text-decoration: none;
-            cursor: default;
-        }
-        &.active {
-            color: $primary;
-            text-decoration: underline;
-        }
-        &.disabled {
-            color: #959595;
         }
     }
 }

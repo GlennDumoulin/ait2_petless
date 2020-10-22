@@ -26,13 +26,10 @@ class Post extends BaseModel {
         ORDER BY `created_on` DESC
         LIMIT :offset, :perPage';
         $pdo_statement = $db->prepare($sql);
-        $pdo_statement->execute(
-            [
-                ':type' => $type,
-                ':offset' => $offset,
-                ':perPage' => $perPage
-            ]
-        );
+        $pdo_statement->bindParam(':type', $type);
+        $pdo_statement->bindParam(':offset', $offset, PDO::PARAM_INT);
+        $pdo_statement->bindParam(':perPage', $perPage, PDO::PARAM_INT);
+        $pdo_statement->execute();
         return $pdo_statement->fetchAll();
 
     }
@@ -42,19 +39,42 @@ class Post extends BaseModel {
 
         $sql = 'SELECT *
         FROM `' . $this->table . '`
-        WHERE `type` != :hond AND `type` != :kat
+        WHERE `type` != "hond" AND `type` != "kat"
         ORDER BY `created_on` DESC
         LIMIT :offset, :perPage';
         $pdo_statement = $db->prepare($sql);
+        $pdo_statement->bindParam(':offset', $offset, PDO::PARAM_INT);
+        $pdo_statement->bindParam(':perPage', $perPage, PDO::PARAM_INT);
+        $pdo_statement->execute();
+        return $pdo_statement->fetchAll();
+
+    }
+
+    public function countByType($type) {
+        global $db;
+
+        $sql = 'SELECT COUNT(*)
+        FROM `' . $this->table . '`
+        WHERE `type` = :type';
+        $pdo_statement = $db->prepare($sql);
         $pdo_statement->execute(
             [
-                ':hond' => 'hond',
-                ':kat' => 'kat',
-                ':offset' => $offset,
-                ':perPage' => $perPage
+                ':type' => $type
             ]
         );
-        return $pdo_statement->fetchAll();
+        return (int) $pdo_statement->fetchColumn();
+
+    }
+
+    public function countOtherTypes() {
+        global $db;
+
+        $sql = 'SELECT COUNT(*)
+        FROM `' . $this->table . '`
+        WHERE `type` != "hond" AND `type` != "kat"';
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute();
+        return (int) $pdo_statement->fetchColumn();
 
     }
 
