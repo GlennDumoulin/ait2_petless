@@ -17,16 +17,31 @@ class Post extends BaseModel {
     public $created_on;
 
 
-    public function getByType($type, $offset, $perPage) {
+    public function getByType($type, $offset, $perPage, $filters) {
         global $db;
 
+        $filterQuery = '';
+        if ($filters->race !== '') {
+            $filterQuery .= 'AND `race` = :race';
+        }
+        if ($filters->location !== '') {
+            $filterQuery .= 'AND `address` LIKE :location';
+        }
+        if ($filters->status !== '') {
+            $filterQuery .= 'AND `status` = :status';
+        }
+        
         $sql = 'SELECT *
         FROM `' . $this->table . '`
         WHERE `type` = :type
-        ORDER BY `created_on` DESC
+        ' . $filterQuery . '
+        ORDER BY `created_on` ' . $filters->sort_order . '
         LIMIT :offset, :perPage';
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->bindParam(':type', $type);
+        if ($filters->race !== '') { $pdo_statement->bindParam(':race', $filters->race); };
+        if ($filters->location !== '') { $pdo_statement->bindParam(':location', $filters->location); };
+        if ($filters->status !== '') { $pdo_statement->bindParam(':status', $filters->status); };
         $pdo_statement->bindParam(':offset', $offset, PDO::PARAM_INT);
         $pdo_statement->bindParam(':perPage', $perPage, PDO::PARAM_INT);
         $pdo_statement->execute();
@@ -34,15 +49,34 @@ class Post extends BaseModel {
 
     }
 
-    public function getOtherTypes($offset, $perPage) {
+    public function getOtherTypes($offset, $perPage, $filters) {
         global $db;
+
+        $filterQuery = '';
+        if ($filters->type !== '') {
+            $filterQuery .= 'AND `type` = :type';
+        }
+        if ($filters->race !== '') {
+            $filterQuery .= 'AND `race` = :race';
+        }
+        if ($filters->location !== '') {
+            $filterQuery .= 'AND `address` LIKE :location';
+        }
+        if ($filters->status !== '') {
+            $filterQuery .= 'AND `status` = :status';
+        }
 
         $sql = 'SELECT *
         FROM `' . $this->table . '`
         WHERE `type` != "hond" AND `type` != "kat"
-        ORDER BY `created_on` DESC
+        ' . $filterQuery . '
+        ORDER BY `created_on` ' . $filters->sort_order . '
         LIMIT :offset, :perPage';
         $pdo_statement = $db->prepare($sql);
+        if ($filters->type !== '') { $pdo_statement->bindParam(':type', $filters->type); };
+        if ($filters->race !== '') { $pdo_statement->bindParam(':race', $filters->race); };
+        if ($filters->location !== '') { $pdo_statement->bindParam(':location', $filters->location); };
+        if ($filters->status !== '') { $pdo_statement->bindParam(':status', $filters->status); };
         $pdo_statement->bindParam(':offset', $offset, PDO::PARAM_INT);
         $pdo_statement->bindParam(':perPage', $perPage, PDO::PARAM_INT);
         $pdo_statement->execute();
@@ -50,29 +84,60 @@ class Post extends BaseModel {
 
     }
 
-    public function countByType($type) {
+    public function countByType($type, $filters) {
         global $db;
+
+        $filterQuery = '';
+        if ($filters->race !== '') {
+            $filterQuery .= 'AND `race` = :race';
+        }
+        if ($filters->location !== '') {
+            $filterQuery .= 'AND `address` LIKE :location';
+        }
+        if ($filters->status !== '') {
+            $filterQuery .= 'AND `status` = :status';
+        }
 
         $sql = 'SELECT COUNT(*)
         FROM `' . $this->table . '`
-        WHERE `type` = :type';
+        WHERE `type` = :type
+        ' . $filterQuery . '';
         $pdo_statement = $db->prepare($sql);
-        $pdo_statement->execute(
-            [
-                ':type' => $type
-            ]
-        );
+        $pdo_statement->bindParam(':type', $filters->type);
+        if ($filters->race !== '') { $pdo_statement->bindParam(':race', $filters->race); };
+        if ($filters->location !== '') { $pdo_statement->bindParam(':location', $filters->location); };
+        if ($filters->status !== '') { $pdo_statement->bindParam(':status', $filters->status); };
+        $pdo_statement->execute();
         return (int) $pdo_statement->fetchColumn();
 
     }
 
-    public function countOtherTypes() {
+    public function countOtherTypes($filters) {
         global $db;
+
+        $filterQuery = '';
+        if ($filters->type !== '') {
+            $filterQuery .= 'AND `type` = :type';
+        }
+        if ($filters->race !== '') {
+            $filterQuery .= 'AND `race` = :race';
+        }
+        if ($filters->location !== '') {
+            $filterQuery .= 'AND `address` LIKE :location';
+        }
+        if ($filters->status !== '') {
+            $filterQuery .= 'AND `status` = :status';
+        }
 
         $sql = 'SELECT COUNT(*)
         FROM `' . $this->table . '`
-        WHERE `type` != "hond" AND `type` != "kat"';
+        WHERE `type` != "hond" AND `type` != "kat"
+        ' . $filterQuery . '';
         $pdo_statement = $db->prepare($sql);
+        if ($filters->type !== '') { $pdo_statement->bindParam(':type', $filters->type); };
+        if ($filters->race !== '') { $pdo_statement->bindParam(':race', $filters->race); };
+        if ($filters->location !== '') { $pdo_statement->bindParam(':location', $filters->location); };
+        if ($filters->status !== '') { $pdo_statement->bindParam(':status', $filters->status); };
         $pdo_statement->execute();
         return (int) $pdo_statement->fetchColumn();
 
@@ -102,13 +167,12 @@ class Post extends BaseModel {
             ':description' => $this->description,
             ':found_on_lost_since' => $this->found_on_lost_since,
             ':image' => $this->image,
-            ':created_on' => $this->created_on,
         ];
 
         if( $this->page_id > 0 ) {
             //update
             $sql = 'UPDATE `' . $this->table . '` 
-                    SET `status` = :status, `address` = :address, `type` = :type, `race` = :race, `description` = :description, `found_on_lost_since` = :found_on_lost_since, `image` = :image, `created_on` = :created_on
+                    SET `status` = :status, `address` = :address, `type` = :type, `race` = :race, `description` = :description, `found_on_lost_since` = :found_on_lost_since, `image` = :image
                     WHERE `' . $this->pk . '` = :post_id ';
 
             $data['post_id'] = $this->post_id;
@@ -118,8 +182,8 @@ class Post extends BaseModel {
             
         } else {
             //insert
-            $sql = 'INSERT INTO `' . $this->table . '` (`status`, `address`, `type`, `race`, `description`, `found_on_lost_since`, `image`, `created_on`)
-                    VALUES (:status, :address, :type, :race, :description, :found_on_lost_since, :image, :created_on)';
+            $sql = 'INSERT INTO `' . $this->table . '` (`status`, `address`, `type`, `race`, `description`, `found_on_lost_since`, `image`)
+                    VALUES (:status, :address, :type, :race, :description, :found_on_lost_since, :image)';
 
             $insert_statement = $db->prepare($sql);
             $insert_statement->execute( $data );

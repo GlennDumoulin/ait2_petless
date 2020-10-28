@@ -10028,18 +10028,18 @@ h3 {
   border: 2px solid black;
 }
 
-.dogs_list {
+.list {
   margin-top: 75px;
   margin-bottom: 30px;
 }
-.dogs_list_item {
+.list_item {
   margin-bottom: 30px;
 }
-.dogs_list_item a {
+.list_item a {
   width: 100%;
   color: white;
 }
-.dogs_list_item a .item_content {
+.list_item a .item_content {
   text-shadow: black 2px -2px 2px;
   position: relative;
   border: 2px solid black;
@@ -10047,13 +10047,13 @@ h3 {
   height: 300px;
   transition: all 0.3s ease-in-out;
 }
-.dogs_list_item a .item_content img {
+.list_item a .item_content img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 20px;
 }
-.dogs_list_item a .item_content .overlay {
+.list_item a .item_content .overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -10063,39 +10063,34 @@ h3 {
   border-radius: 20px;
   transition: all 0.3s ease-in-out;
 }
-.dogs_list_item a .item_content .race {
+.list_item a .item_content .race {
   position: absolute;
   top: 10px;
   left: 15px;
   font-size: 1.5rem;
 }
 @media (max-width: 991px) {
-  .dogs_list_item a .item_content .race {
+  .list_item a .item_content .race {
     font-size: 1.2rem;
   }
 }
-.dogs_list_item a .item_content .bookmark {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-}
-.dogs_list_item a .item_content .info {
+.list_item a .item_content .info {
   position: absolute;
   bottom: 10px;
   left: 15px;
 }
-.dogs_list_item a .item_content .info p {
+.list_item a .item_content .info p {
   margin-bottom: 0;
 }
 @media (max-width: 991px) {
-  .dogs_list_item a .item_content .info p {
+  .list_item a .item_content .info p {
     font-size: 0.8rem;
   }
 }
-.dogs_list_item a:hover .item_content {
+.list_item a:hover .item_content {
   border: 2px solid #2176d2;
 }
-.dogs_list_item a:hover .overlay {
+.list_item a:hover .overlay {
   opacity: 0;
 }
 

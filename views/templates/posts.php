@@ -1,20 +1,25 @@
 <?php
 
     $type = $_GET['type'] ?? '';
+    $sort_order = $_GET['sort_order'] ?? 'DESC';
+    $status = $_GET['status'] ?? '';
 
     $post_model = new Post();
 
     include 'views/assets/pagination.php';
-
 ?>
 
 <main>
     <div class="filter_wrapper <?= $type ?>_bg">
         <form
-            method="POST"
+            method="GET"
             class="filter_form d-flex justify-content-between align-items-center"
         >
-            <?php if ($type == 'andere') : ?>
+            <input type="hidden" name="p_id" value=<?= $page_id ?> />
+            <?php if ($type !== 'andere') : ?>
+                <input type="hidden" name="type" value=<?= $type ?> />
+            <?php endif; ?>
+            <?php if ($page_id === '4') : ?>
                 <div class="filter_item">
                     <label for="type">Type</label><br />
                     <input type="text" name="type" />
@@ -28,13 +33,14 @@
                 <label for="location">Locatie</label><br />
                 <input type="text" name="location" placeholder="postcode + gemeente" />
             </div>
-            <select name="sort_by_date">
-                <option value="recent_first">Recentste eerst</option>
-                <option value="oldest_first">Oudste eerst</option>
+            <select name="sort_order">
+                <option value="DESC" <?= ($sort_order === "DESC") ? 'selected' : '' ?> >Recentste eerst</option>
+                <option value="ASC" <?= ($sort_order === "ASC") ? 'selected' : '' ?> >Oudste eerst</option>
             </select>
             <select name="status">
-                <option value="found">Gevonden</option>
-                <option value="lost">Gezocht</option>
+                <option value="" <?= ($status === "") ? 'selected' : '' ?> >Alle posts</option>
+                <option value="found" <?= ($status === "found") ? 'selected' : '' ?> >Gevonden</option>
+                <option value="lost" <?= ($status === "lost") ? 'selected' : '' ?> >Gezocht</option>
             </select>
             <button type="submit" class="btn btn-primary">
                 <i data-feather="search"></i> Zoeken
@@ -42,7 +48,7 @@
         </form>
     </div>
     <div class="container">
-        <div class="dogs_list row">
+        <div class="list row">
             <?php
 
                 if ($posts) {
