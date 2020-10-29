@@ -1,7 +1,7 @@
 <?php
     $post = (object) $post;
     $address = (str_replace(", ", "<br>", $post->address));
-    $formatted_date = date("d M Y", strtotime($post->found_on_lost_since));
+    $formatted_date = strftime("%a %e %b %Y", strtotime($post->found_on_lost_since));
 ?>
 
 <div class="list_item col-6 col-md-4">

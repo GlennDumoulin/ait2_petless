@@ -10040,7 +10040,7 @@ h3 {
   color: white;
 }
 .list_item a .item_content {
-  text-shadow: black 2px -2px 2px;
+  text-shadow: black 2px 2px 3px;
   position: relative;
   border: 2px solid black;
   border-radius: 20px;
@@ -10086,6 +10086,9 @@ h3 {
   .list_item a .item_content .info p {
     font-size: 0.8rem;
   }
+}
+.list_item a .item_content .info svg {
+  filter: drop-shadow(2px 2px 2px black);
 }
 .list_item a:hover .item_content {
   border: 2px solid #2176d2;

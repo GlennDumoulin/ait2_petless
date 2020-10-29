@@ -40,7 +40,7 @@
             width: 100%;
             color: white;
             & .item_content {
-                text-shadow: black 2px -2px 2px;
+                text-shadow: black 2px 2px 3px;
                 position: relative;
                 border: 2px solid black;
                 border-radius: 20px;
@@ -85,6 +85,9 @@
                         @media (max-width: 991px) {
                             font-size: 0.8rem;
                         }
+                    }
+                    & svg {
+                        filter: drop-shadow(2px 2px 2px black);
                     }
                 }
             }

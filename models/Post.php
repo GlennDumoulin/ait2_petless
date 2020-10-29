@@ -22,13 +22,13 @@ class Post extends BaseModel {
 
         $filterQuery = '';
         if ($filters->race !== '') {
-            $filterQuery .= 'AND `race` = :race';
+            $filterQuery .= 'AND `race` = :race ';
         }
-        if ($filters->location !== '') {
-            $filterQuery .= 'AND `address` LIKE :location';
+        if ($filters->location !== '%' . '' . '%') {
+            $filterQuery .= 'AND `address` LIKE :location ';
         }
         if ($filters->status !== '') {
-            $filterQuery .= 'AND `status` = :status';
+            $filterQuery .= 'AND `status` = :status ';
         }
         
         $sql = 'SELECT *
@@ -40,7 +40,7 @@ class Post extends BaseModel {
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->bindParam(':type', $type);
         if ($filters->race !== '') { $pdo_statement->bindParam(':race', $filters->race); };
-        if ($filters->location !== '') { $pdo_statement->bindParam(':location', $filters->location); };
+        if ($filters->location !== '%' . '' . '%') { $pdo_statement->bindParam(':location', $filters->location); };
         if ($filters->status !== '') { $pdo_statement->bindParam(':status', $filters->status); };
         $pdo_statement->bindParam(':offset', $offset, PDO::PARAM_INT);
         $pdo_statement->bindParam(':perPage', $perPage, PDO::PARAM_INT);
@@ -54,16 +54,16 @@ class Post extends BaseModel {
 
         $filterQuery = '';
         if ($filters->type !== '') {
-            $filterQuery .= 'AND `type` = :type';
+            $filterQuery .= 'AND `type` = :type ';
         }
         if ($filters->race !== '') {
-            $filterQuery .= 'AND `race` = :race';
+            $filterQuery .= 'AND `race` = :race ';
         }
-        if ($filters->location !== '') {
-            $filterQuery .= 'AND `address` LIKE :location';
+        if ($filters->location !== '%' . '' . '%') {
+            $filterQuery .= 'AND `address` LIKE :location ';
         }
         if ($filters->status !== '') {
-            $filterQuery .= 'AND `status` = :status';
+            $filterQuery .= 'AND `status` = :status ';
         }
 
         $sql = 'SELECT *
@@ -75,7 +75,7 @@ class Post extends BaseModel {
         $pdo_statement = $db->prepare($sql);
         if ($filters->type !== '') { $pdo_statement->bindParam(':type', $filters->type); };
         if ($filters->race !== '') { $pdo_statement->bindParam(':race', $filters->race); };
-        if ($filters->location !== '') { $pdo_statement->bindParam(':location', $filters->location); };
+        if ($filters->location !== '%' . '' . '%') { $pdo_statement->bindParam(':location', $filters->location); };
         if ($filters->status !== '') { $pdo_statement->bindParam(':status', $filters->status); };
         $pdo_statement->bindParam(':offset', $offset, PDO::PARAM_INT);
         $pdo_statement->bindParam(':perPage', $perPage, PDO::PARAM_INT);
@@ -89,13 +89,13 @@ class Post extends BaseModel {
 
         $filterQuery = '';
         if ($filters->race !== '') {
-            $filterQuery .= 'AND `race` = :race';
+            $filterQuery .= 'AND `race` = :race ';
         }
-        if ($filters->location !== '') {
-            $filterQuery .= 'AND `address` LIKE :location';
+        if ($filters->location !== '%' . '' . '%') {
+            $filterQuery .= 'AND `address` LIKE :location ';
         }
         if ($filters->status !== '') {
-            $filterQuery .= 'AND `status` = :status';
+            $filterQuery .= 'AND `status` = :status ';
         }
 
         $sql = 'SELECT COUNT(*)
@@ -105,7 +105,7 @@ class Post extends BaseModel {
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->bindParam(':type', $filters->type);
         if ($filters->race !== '') { $pdo_statement->bindParam(':race', $filters->race); };
-        if ($filters->location !== '') { $pdo_statement->bindParam(':location', $filters->location); };
+        if ($filters->location !== '%' . '' . '%') { $pdo_statement->bindParam(':location', $filters->location); };
         if ($filters->status !== '') { $pdo_statement->bindParam(':status', $filters->status); };
         $pdo_statement->execute();
         return (int) $pdo_statement->fetchColumn();
@@ -117,16 +117,16 @@ class Post extends BaseModel {
 
         $filterQuery = '';
         if ($filters->type !== '') {
-            $filterQuery .= 'AND `type` = :type';
+            $filterQuery .= 'AND `type` = :type ';
         }
         if ($filters->race !== '') {
-            $filterQuery .= 'AND `race` = :race';
+            $filterQuery .= 'AND `race` = :race ';
         }
-        if ($filters->location !== '') {
-            $filterQuery .= 'AND `address` LIKE :location';
+        if ($filters->location !== '%' . '' . '%') {
+            $filterQuery .= 'AND `address` LIKE :location ';
         }
         if ($filters->status !== '') {
-            $filterQuery .= 'AND `status` = :status';
+            $filterQuery .= 'AND `status` = :status ';
         }
 
         $sql = 'SELECT COUNT(*)
@@ -136,7 +136,7 @@ class Post extends BaseModel {
         $pdo_statement = $db->prepare($sql);
         if ($filters->type !== '') { $pdo_statement->bindParam(':type', $filters->type); };
         if ($filters->race !== '') { $pdo_statement->bindParam(':race', $filters->race); };
-        if ($filters->location !== '') { $pdo_statement->bindParam(':location', $filters->location); };
+        if ($filters->location !== '%' . '' . '%') { $pdo_statement->bindParam(':location', $filters->location); };
         if ($filters->status !== '') { $pdo_statement->bindParam(':status', $filters->status); };
         $pdo_statement->execute();
         return (int) $pdo_statement->fetchColumn();

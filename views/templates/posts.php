@@ -1,8 +1,11 @@
 <?php
 
     $type = $_GET['type'] ?? '';
+    $race = $_GET['race'] ?? '';
+    $location = $_GET['location'] ?? '';
     $sort_order = $_GET['sort_order'] ?? 'DESC';
     $status = $_GET['status'] ?? '';
+    print_r($location);
 
     $post_model = new Post();
 
@@ -22,16 +25,16 @@
             <?php if ($page_id === '4') : ?>
                 <div class="filter_item">
                     <label for="type">Type</label><br />
-                    <input type="text" name="type" />
+                    <input type="text" name="type" value="<?= ($type !== "" && $type !== "andere") ? $type : "" ?>" />
                 </div>
             <?php endif; ?>
             <div class="filter_item">
                 <label for="race">Ras</label><br />
-                <input type="text" name="race" />
+                <input type="text" name="race" value="<?= $race ?? "" ?>" />
             </div>
             <div class="filter_item">
                 <label for="location">Locatie</label><br />
-                <input type="text" name="location" placeholder="postcode + gemeente" />
+                <input type="text" name="location" value="<?= $location ?? "" ?>" />
             </div>
             <select name="sort_order">
                 <option value="DESC" <?= ($sort_order === "DESC") ? 'selected' : '' ?> >Recentste eerst</option>
