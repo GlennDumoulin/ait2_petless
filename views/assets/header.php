@@ -8,8 +8,13 @@
                 <a href="#">bericht plaatsen</a>
                 <p>
                     <i data-feather="user"></i>
-                    <a href="#">inloggen</a> of
-                    <a href="#">registreren</a>
+                    <?php if ($user_id === 0) : ?>
+                        <a href="./login.php">inloggen</a> of
+                        <a href="./register.php">registreren</a>
+                    <?php else : ?>
+                        <a href="./account.php">mijn account</a> of
+                        <a href="./logout.php">uitloggen</a>
+                    <?php endif; ?>
                 </p>
             </div>
             <div class="nav_pages_bottom d-flex justify-content-end">

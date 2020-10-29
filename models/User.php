@@ -32,17 +32,33 @@ class User extends BaseModel {
         return $pdo_statement->fetchObject();
     }
 
-    public function register($email) {
+    public function emailExists($email) {
         global $db;
 
         $sql = 'SELECT COUNT(`email`) AS total FROM `' . $this->table . '` WHERE `email` = :email';
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->execute(
             [
-                ':email'=>$email
+                ':email' => $email
             ]
         );
         return (int) $pdo_statement->fetchColumn();
+    }
+
+    public function register($userInfo) {
+        global $db;
+
+        $sql = 'INSERT INTO `users` (`firstname`, `lastname`, `email`, `password`)
+        VALUES (:firstname, :lastname, :email, :password)';
+        $post_statement = $db->prepare($sql);
+        $post_statement->execute(
+            [
+                ':firstname' => $userInfo->firstname,
+                ':lastname' => $userInfo->lastname,
+                ':email' => $userInfo->email,
+                ':password' => $userInfo->password
+            ]
+        );
     }
 
     public function login($email) {
@@ -52,7 +68,7 @@ class User extends BaseModel {
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->execute(
             [
-                ':email'=>$email
+                ':email' => $email
             ]
         );
         return $pdo_statement->fetchObject();

@@ -11,8 +11,9 @@ require BASE_DIR . '/models/Post.php';
 require BASE_DIR . '/models/User.php';
 
 // get User from session
+$user_model = new User();
 $user_id = $_SESSION['user_id'] ?? 0;
-$user = ($user_id) ? User::getById($user_id) : false;
+$user = ($user_id) ? $user_model->getById($user_id) : false;
 
 // set timezone
 setlocale(LC_ALL, 'nl_NL');

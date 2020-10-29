@@ -6,7 +6,7 @@
         $status = "gezocht";
     } elseif ($post->status == "found") {
         $status = "gevonden";
-    } else {
+    } elseif ($post->status == "resolved") {
         $status = "terug terecht";
     }
 

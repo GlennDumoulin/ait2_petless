@@ -5,7 +5,6 @@
     $location = $_GET['location'] ?? '';
     $sort_order = $_GET['sort_order'] ?? 'DESC';
     $status = $_GET['status'] ?? '';
-    print_r($location);
 
     $post_model = new Post();
 
