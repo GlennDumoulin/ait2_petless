@@ -1,0 +1,52 @@
+.new_message_form {
+    margin: 75px 0;
+    & input {
+        border: none;
+        border-bottom: 1px solid black;
+        margin-bottom: 20px;
+    }
+    & textarea {
+        border-color: black;
+    }
+    & select {
+        padding: 5px 10px;
+        border: none;
+    }
+    & button {
+        border: 2px solid black;
+    }
+    & .content {
+        border: 2px solid black;
+        border-radius: 20px;
+        padding: 20px;
+        position: relative;
+        & .req_definition {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+        }
+    }
+    & .date_and_img {
+        & .date,
+        .img {
+            text-align: center;
+            padding: 50px 20px;
+            border: 2px solid black;
+            border-radius: 20px;
+        }
+        & input {
+            border: none;
+            margin: 0;
+        }
+        & .date input {
+            border: 1px solid black;
+        }
+    }
+    & .required {
+        color: red;
+    }
+    & .form_submit {
+        margin: 0 auto;
+        margin-top: 50px;
+    }
+}

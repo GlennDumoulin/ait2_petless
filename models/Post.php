@@ -53,7 +53,7 @@ class Post extends BaseModel {
         global $db;
 
         $filterQuery = '';
-        if ($filters->type !== '') {
+        if ($filters->type !== '' && $filters->type !== 'andere') {
             $filterQuery .= 'AND `type` = :type ';
         }
         if ($filters->race !== '') {
@@ -73,7 +73,7 @@ class Post extends BaseModel {
         ORDER BY `created_on` ' . $filters->sort_order . '
         LIMIT :offset, :perPage';
         $pdo_statement = $db->prepare($sql);
-        if ($filters->type !== '') { $pdo_statement->bindParam(':type', $filters->type); };
+        if ($filters->type !== '' && $filters->type !== 'andere') { $pdo_statement->bindParam(':type', $filters->type); };
         if ($filters->race !== '') { $pdo_statement->bindParam(':race', $filters->race); };
         if ($filters->location !== '%' . '' . '%') { $pdo_statement->bindParam(':location', $filters->location); };
         if ($filters->status !== '') { $pdo_statement->bindParam(':status', $filters->status); };
@@ -116,7 +116,7 @@ class Post extends BaseModel {
         global $db;
 
         $filterQuery = '';
-        if ($filters->type !== '') {
+        if ($filters->type !== '' && $filters->type !== 'andere') {
             $filterQuery .= 'AND `type` = :type ';
         }
         if ($filters->race !== '') {
@@ -134,7 +134,7 @@ class Post extends BaseModel {
         WHERE `type` != "hond" AND `type` != "kat"
         ' . $filterQuery . '';
         $pdo_statement = $db->prepare($sql);
-        if ($filters->type !== '') { $pdo_statement->bindParam(':type', $filters->type); };
+        if ($filters->type !== '' && $filters->type !== 'andere') { $pdo_statement->bindParam(':type', $filters->type); };
         if ($filters->race !== '') { $pdo_statement->bindParam(':race', $filters->race); };
         if ($filters->location !== '%' . '' . '%') { $pdo_statement->bindParam(':location', $filters->location); };
         if ($filters->status !== '') { $pdo_statement->bindParam(':status', $filters->status); };
@@ -160,6 +160,7 @@ class Post extends BaseModel {
         global $db;
 
         $data = [
+            ':author_id' => $this->author_id,
             ':status' => $this->status,
             ':address' => $this->address,
             ':type' => $this->type,
@@ -169,7 +170,7 @@ class Post extends BaseModel {
             ':image' => $this->image,
         ];
 
-        if( $this->page_id > 0 ) {
+        if( $this->post_id > 0 ) {
             //update
             $sql = 'UPDATE `' . $this->table . '` 
                     SET `status` = :status, `address` = :address, `type` = :type, `race` = :race, `description` = :description, `found_on_lost_since` = :found_on_lost_since, `image` = :image
@@ -182,8 +183,8 @@ class Post extends BaseModel {
             
         } else {
             //insert
-            $sql = 'INSERT INTO `' . $this->table . '` (`status`, `address`, `type`, `race`, `description`, `found_on_lost_since`, `image`)
-                    VALUES (:status, :address, :type, :race, :description, :found_on_lost_since, :image)';
+            $sql = 'INSERT INTO `' . $this->table . '` (`author_id`, `status`, `address`, `type`, `race`, `description`, `found_on_lost_since`, `image`)
+                    VALUES (:author_id, :status, :address, :type, :race, :description, :found_on_lost_since, :image)';
 
             $insert_statement = $db->prepare($sql);
             $insert_statement->execute( $data );

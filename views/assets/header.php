@@ -5,7 +5,7 @@
         </div>
         <div class="nav_pages col-8">
             <div class="nav_pages_top d-flex justify-content-end">
-                <a href="#">bericht plaatsen</a>
+                <a href="./edit_post.php" class="<?= ($user_id) ? '' : 'hidden' ?>" >bericht plaatsen</a>
                 <p>
                     <i data-feather="user"></i>
                     <?php if ($user_id === 0) : ?>

@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class="image col-6">
-                    <img src="./images/<?= $post->image ?>" />
+                    <img src="./images/<?= $post->author_id ?>/<?= $post->image ?>" />
                 </div>
             </div>
             <div class="detail_buttons d-flex justify-content-center">

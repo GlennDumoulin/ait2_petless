@@ -9932,6 +9932,9 @@ h3 {
   color: white;
   text-decoration: underline;
 }
+.nav_pages a.hidden {
+  display: none;
+}
 
 .footer_wrapper {
   margin-top: 75px;
@@ -10161,6 +10164,57 @@ h3 {
   object-fit: cover;
   border: 2px solid black;
   border-radius: 20px;
+}
+
+.new_message_form {
+  margin: 75px 0;
+}
+.new_message_form input {
+  border: none;
+  border-bottom: 1px solid black;
+  margin-bottom: 20px;
+}
+.new_message_form textarea {
+  border-color: black;
+}
+.new_message_form select {
+  padding: 5px 10px;
+  border: none;
+}
+.new_message_form button {
+  border: 2px solid black;
+}
+.new_message_form .content {
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+}
+.new_message_form .content .req_definition {
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+}
+.new_message_form .date_and_img .date,
+.new_message_form .date_and_img .img {
+  text-align: center;
+  padding: 50px 20px;
+  border: 2px solid black;
+  border-radius: 20px;
+}
+.new_message_form .date_and_img input {
+  border: none;
+  margin: 0;
+}
+.new_message_form .date_and_img .date input {
+  border: 1px solid black;
+}
+.new_message_form .required {
+  color: red;
+}
+.new_message_form .form_submit {
+  margin: 0 auto;
+  margin-top: 50px;
 }
 
 body {

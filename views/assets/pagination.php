@@ -30,7 +30,7 @@ $nextPage = $page + 1;
 
 $links = "";
 if ($page > 1) {
-    $links .= "<a href='index.php?p_id=$page_id&type=$filters->type&race=$filters->race&location=$filters->location&sort_order=$sort_order&status=$filterStatus&page=$prevPage'><i data-feather=\"arrow-left\"></i></a>";
+    $links .= "<a href='index.php?p_id=$page_id&type=$filterType&race=$filterRace&location=$filterLocation&sort_order=$sort_order&status=$filterStatus&page=$prevPage'><i data-feather=\"arrow-left\"></i></a>";
 }
 for ($i = 1; $i <= $totalPages; $i++) {
     if ($i == $page) {

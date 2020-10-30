@@ -7,7 +7,7 @@
 <div class="list_item col-6 col-md-4">
     <a href="./post_detail.php?p_id=<?= $page_id ?>&post_id=<?= $post->post_id ?>">
         <div class="item_content">
-            <img src="images/<?= $post->image ?>">
+            <img src="images/<?= $post->author_id ?>/<?= $post->image ?>">
             <div class="overlay"></div>
             <h1 class="race"><?= $post->race ?></h1>
             <div class="info">

@@ -32,8 +32,10 @@
 
             $user_model->register($userInfo);
 
-            $user_id = $db->lastInsertId();
-            $registerMsg = 'Gebruiker ' . $user_id . ' is aangemaakt!';
+            $new_user_id = $db->lastInsertId();
+            $registerMsg = 'Gebruiker ' . $new_user_id . ' is aangemaakt!';
+
+            header('location: login.php');
         }
     }
 ?>
