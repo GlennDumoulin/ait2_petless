@@ -10137,6 +10137,11 @@ h3 {
   margin: 50px 30px 0;
   border: 2px solid black;
 }
+.detail_wrapper .login_required {
+  color: #dc3545;
+  text-align: center;
+  margin-top: 10px;
+}
 
 .register,
 .login {

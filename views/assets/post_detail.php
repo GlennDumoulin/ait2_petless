@@ -63,22 +63,23 @@
                         Bericht bewerken
                     </a>
                 <?php else : ?>
-                    <a href="#" class="btn btn-primary">
+                    <a href="#" class="btn btn-primary <?= (!$user_id) ? "disabled" : "" ?>">
                         <i data-feather="message-circle"></i>
                         Start een chat
                     </a>
+                    <a href="./bookmark.php?p_id=<?= $page_id ?>post_id=<?= $post_id ?>" class="btn btn-secondary <?= (!$user_id) ? "disabled" : "" ?>">
+                        <i data-feather="bookmark"></i>
+                        Bericht bewaren
+                    </a>
                 <?php endif ?>
-                <a href="#" class="btn btn-primary">
-                    <i data-feather="bookmark"></i>
-                    Bericht bewaren
-                </a>
-                <?php if ($user->isAdmin) : ?>
+                <?php if ($user_id && $user->isAdmin) : ?>
                     <a href="#" class="btn btn-danger">
                         <i data-feather="alert-triangle"></i>
                         Bericht verwijderen
                     </a>
                 <?php endif ?>
             </div>
+            <?= (!$user_id) ? '<p class="login_required">Log in om deze acties te gebruiken.</p>' : '' ?>
         </div>
     </div>
 </main>

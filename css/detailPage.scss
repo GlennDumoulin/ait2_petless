@@ -36,4 +36,9 @@
             border: 2px solid black;
         }
     }
+    & .login_required {
+        color: $danger;
+        text-align: center;
+        margin-top: 10px;
+    }
 }

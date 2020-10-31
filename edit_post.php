@@ -2,10 +2,12 @@
 
     require 'app.php';
 
+    // redirect if not logged in
     if (!$user_id) {
         header('location: login.php');
     }
 
+    // get pages and posts data
     $page_id = $_GET['p_id'] ?? 1;
     $current_page = Page::getById($page_id);
 
@@ -14,6 +16,11 @@
     $post_id = $_GET['post_id'] ?? 0;
     $post_model = new Post();
     $current_post = $post_model->getById($post_id);
+    
+    // redirect when user is not the author
+    if ($user_id !== $current_post->author_id) {
+        header('location: index.php');
+    }
 
     $img = '';
 
@@ -134,7 +141,7 @@
                         <input type="file" name="img" accept="image/*" required />
                     </div>
                 </div>
-                <button type="submit" class="form_submit btn btn-primary" name="submit_post">
+                <button type="submit" class="form_submit btn btn-<?= ($post_id) ? "warning" : "primary" ?>" name="submit_post">
                     <i data-feather="message-square"></i> <?= ( $post_id ) ? "Bericht bewerken" : "Bericht plaatsen" ?>
                 </button>
             </form>
