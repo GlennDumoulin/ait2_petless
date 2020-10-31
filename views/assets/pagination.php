@@ -28,19 +28,19 @@ $totalPages = ceil($total / $perPage);
 $prevPage = $page - 1;
 $nextPage = $page + 1;
 
-$links = "";
+$links = '';
+$urlStart = '<a href="index.php?p_id=' . $page_id;
+$urlFilters = '&type=' . $filterType . '&race=' . $filterRace . '&location=' . $filterLocation . '&sort_order=' . $sort_order . '&status=' . $filterStatus;
+$standardUrl = $urlStart . $urlFilters . '&page=';
+
 if ($page > 1) {
-    $links .= "<a href='index.php?p_id=$page_id&type=$filterType&race=$filterRace&location=$filterLocation&sort_order=$sort_order&status=$filterStatus&page=$prevPage'><i data-feather=\"arrow-left\"></i></a>";
+    $links .= $standardUrl . $prevPage . '"><i data-feather="arrow-left"></i></a>';
 }
 for ($i = 1; $i <= $totalPages; $i++) {
-    if ($i == $page) {
-        $links .= "<a href='index.php?p_id=$page_id&type=$filterType&race=$filterRace&location=$filterLocation&sort_order=$sort_order&status=$filterStatus&page=$i' class=\"active\">$i</a>";
-    } else {
-        $links .= "<a href='index.php?p_id=$page_id&type=$filterType&race=$filterRace&location=$filterLocation&sort_order=$sort_order&status=$filterStatus&page=$i'>$i</a>";
-    }
+    $links .= $standardUrl . $i . '" class="' . (($i == $page) ? "active" : "") . '">' . $i . '</a>';
 }
 if ($page < $totalPages) {
-    $links .= "<a href='index.php?p_id=$page_id&type=$filterType&race=$filterRace&location=$filterLocation&sort_order=$sort_order&status=$filterStatus&page=$nextPage'><i data-feather=\"arrow-right\"></i></a>";
+    $links .= $standardUrl . $nextPage . '"><i data-feather="arrow-right"></i></a>';
 }
 
 if ($type == 'andere') {
