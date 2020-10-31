@@ -10132,7 +10132,8 @@ h3 {
   border: 2px solid black;
   border-radius: 20px;
 }
-.detail_wrapper .detail_buttons button {
+.detail_wrapper .detail_buttons a {
+  height: fit-content;
   margin: 50px 30px 0;
   border: 2px solid black;
 }
@@ -10166,8 +10167,12 @@ h3 {
   border-radius: 20px;
 }
 
+.title {
+  margin-top: 75px;
+}
+
 .new_message_form {
-  margin: 75px 0;
+  margin: 30px 0 75px;
 }
 .new_message_form input {
   border: none;

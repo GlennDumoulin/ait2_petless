@@ -160,7 +160,6 @@ class Post extends BaseModel {
         global $db;
 
         $data = [
-            ':author_id' => $this->author_id,
             ':status' => $this->status,
             ':address' => $this->address,
             ':type' => $this->type,
@@ -185,6 +184,8 @@ class Post extends BaseModel {
             //insert
             $sql = 'INSERT INTO `' . $this->table . '` (`author_id`, `status`, `address`, `type`, `race`, `description`, `found_on_lost_since`, `image`)
                     VALUES (:author_id, :status, :address, :type, :race, :description, :found_on_lost_since, :image)';
+
+            $data['author_id'] = $this->author_id;
 
             $insert_statement = $db->prepare($sql);
             $insert_statement->execute( $data );

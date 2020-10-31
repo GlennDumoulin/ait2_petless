@@ -30,7 +30,8 @@
         }
     }
     & .detail_buttons {
-        & button {
+        & a {
+            height: fit-content;
             margin: 50px 30px 0;
             border: 2px solid black;
         }

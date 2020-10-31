@@ -57,14 +57,27 @@
                 </div>
             </div>
             <div class="detail_buttons d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary">
-                    <i data-feather="message-circle"></i>
-                    Start een chat
-                </button>
-                <button type="submit" class="btn btn-primary">
+                <?php if ($user_id == $post->author_id) : ?>
+                    <a href="./edit_post.php?post_id=<?= $post_id ?>" class="btn btn-warning">
+                        <i data-feather="message-square"></i>
+                        Bericht bewerken
+                    </a>
+                <?php else : ?>
+                    <a href="#" class="btn btn-primary">
+                        <i data-feather="message-circle"></i>
+                        Start een chat
+                    </a>
+                <?php endif ?>
+                <a href="#" class="btn btn-primary">
                     <i data-feather="bookmark"></i>
                     Bericht bewaren
-                </button>
+                </a>
+                <?php if ($user->isAdmin) : ?>
+                    <a href="#" class="btn btn-danger">
+                        <i data-feather="alert-triangle"></i>
+                        Bericht verwijderen
+                    </a>
+                <?php endif ?>
             </div>
         </div>
     </div>
