@@ -10,6 +10,14 @@
         $status = "terug terecht";
     }
 
+    $bookmark = (object) array(
+        "user_id" => $user_id,
+        "post_id" => $post->post_id
+    );
+
+    $bookmark_model = new Bookmark();
+    $bookmarked = $bookmark_model->bookmarkExists($bookmark);
+
 ?>
 <main>
     <div class="detail_wrapper">
@@ -56,7 +64,7 @@
                     <img src="./images/<?= $post->author_id ?>/<?= $post->image ?>" />
                 </div>
             </div>
-            <div class="detail_buttons d-flex justify-content-center">
+            <div class="detail_buttons row justify-content-center">
                 <?php if ($user_id == $post->author_id) : ?>
                     <a href="./edit_post.php?post_id=<?= $post_id ?>" class="btn btn-warning">
                         <i data-feather="message-square"></i>
@@ -67,9 +75,9 @@
                         <i data-feather="message-circle"></i>
                         Start een chat
                     </a>
-                    <a href="./bookmark.php?p_id=<?= $page_id ?>post_id=<?= $post_id ?>" class="btn btn-secondary <?= (!$user_id) ? "disabled" : "" ?>">
+                    <a href="./bookmark.php?p_id=<?= $page_id ?>&post_id=<?= $post_id ?>" class="btn btn-secondary <?= ($bookmarked) ? 'remove' : 'add' ?>_bookmark <?= (!$user_id) ? "disabled" : "" ?>">
                         <i data-feather="bookmark"></i>
-                        Bericht bewaren
+                        <?= ($bookmarked) ? 'Bericht niet meer bewaren' : 'Bericht bewaren' ?>
                     </a>
                 <?php endif ?>
                 <?php if ($user_id && $user->isAdmin) : ?>

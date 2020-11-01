@@ -18,7 +18,7 @@
     $current_post = $post_model->getById($post_id);
     
     // redirect when user is not the author
-    if ($user_id !== $current_post->author_id) {
+    if (($page_id && $post_id) && $user_id !== $current_post->author_id) {
         header('location: index.php');
     }
 

@@ -6,6 +6,7 @@ require 'config.php';
 require BASE_DIR . '/includes/db.php';
 
 require BASE_DIR . '/models/BaseModel.php';
+require BASE_DIR . '/models/Bookmark.php';
 require BASE_DIR . '/models/Page.php';
 require BASE_DIR . '/models/Post.php';
 require BASE_DIR . '/models/User.php';

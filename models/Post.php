@@ -17,7 +17,7 @@ class Post extends BaseModel {
     public $created_on;
 
 
-    public function getByType($type, $offset, $perPage, $filters) {
+    public function getByType($offset, $perPage, $filters) {
         global $db;
 
         $filterQuery = '';
@@ -38,7 +38,7 @@ class Post extends BaseModel {
         ORDER BY `created_on` ' . $filters->sort_order . '
         LIMIT :offset, :perPage';
         $pdo_statement = $db->prepare($sql);
-        $pdo_statement->bindParam(':type', $type);
+        $pdo_statement->bindParam(':type', $filters->type);
         if ($filters->race !== '') { $pdo_statement->bindParam(':race', $filters->race); };
         if ($filters->location !== '%' . '' . '%') { $pdo_statement->bindParam(':location', $filters->location); };
         if ($filters->status !== '') { $pdo_statement->bindParam(':status', $filters->status); };
@@ -84,7 +84,7 @@ class Post extends BaseModel {
 
     }
 
-    public function countByType($type, $filters) {
+    public function countByType($filters) {
         global $db;
 
         $filterQuery = '';
@@ -146,11 +146,11 @@ class Post extends BaseModel {
     public function getById($post_id) {
         global $db;
 
-        $sql = 'SELECT * FROM `' . $this->table . '` WHERE `' . $this->pk . '` = :p_id';
+        $sql = 'SELECT * FROM `' . $this->table . '` WHERE `' . $this->pk . '` = :post_id';
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->execute(
             [
-                ':p_id' => $post_id
+                ':post_id' => $post_id
             ]
         );
         return $pdo_statement->fetchObject();
@@ -189,8 +189,6 @@ class Post extends BaseModel {
 
             $insert_statement = $db->prepare($sql);
             $insert_statement->execute( $data );
-
-            $this->page_id = $db->lastInsertId();
             
         }
     }

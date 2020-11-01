@@ -21,7 +21,7 @@ $filters = (object) array(
 if ($type == 'andere') {
     $total = $post_model->countOtherTypes($filters);
 } else {
-    $total = $post_model->countByType($type, $filters);
+    $total = $post_model->countByType($filters);
 }
 
 $totalPages = ceil($total / $perPage);
@@ -46,5 +46,5 @@ if ($page < $totalPages) {
 if ($type == 'andere') {
     $posts = $post_model->getOtherTypes($startAt, $perPage, $filters);
 } else {
-    $posts = $post_model->getByType($type, $startAt, $perPage, $filters);
+    $posts = $post_model->getByType($startAt, $perPage, $filters);
 }
