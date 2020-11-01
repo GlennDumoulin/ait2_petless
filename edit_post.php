@@ -75,7 +75,6 @@
     </head>
     <body>
         <?php
-
             include 'views/assets/header.php';
         ?>
         <div class="container">

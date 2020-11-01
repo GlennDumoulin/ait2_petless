@@ -7,14 +7,15 @@
         header('location: login.php');
     }
 
+    // get pages and posts data
     $page_id = $_GET['p_id'] ?? 1;
     $post_id = $_GET['post_id'] ?? 0;
 
+    // get bookmark data
     $bookmark = (object) array(
         "user_id" => $user_id,
         "post_id" => $post_id
     );
-
     $bookmark_model = new Bookmark();
     $total = $bookmark_model->bookmarkExists($bookmark);
 

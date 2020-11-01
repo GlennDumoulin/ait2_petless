@@ -1,5 +1,6 @@
 <?php
 
+    // post detail info
     $address = (str_replace(", ", "<br>", $post->address));
     $formatted_date = strftime("%a %e %b %Y", strtotime($post->found_on_lost_since));
     if ($post->status == "lost") {
@@ -10,11 +11,11 @@
         $status = "terug terecht";
     }
 
+    // bookmark data
     $bookmark = (object) array(
         "user_id" => $user_id,
         "post_id" => $post->post_id
     );
-
     $bookmark_model = new Bookmark();
     $bookmarked = $bookmark_model->bookmarkExists($bookmark);
 
@@ -22,11 +23,7 @@
 <main>
     <div class="detail_wrapper">
         <a href="./index.php?p_id=<?= $page_id ?>&type=<?= $current_page->type ?>" class="back_btn">
-            <i
-                data-feather="arrow-left-circle"
-                width="50"
-                height="50"
-            ></i>
+            <i data-feather="arrow-left-circle" width="50" height="50"></i>
         </a>
         <div class="container">
             <h1>
@@ -71,7 +68,7 @@
                         Bericht bewerken
                     </a>
                 <?php else : ?>
-                    <a href="#" class="btn btn-primary <?= (!$user_id) ? "disabled" : "" ?>">
+                    <a href="./chat.php?p_id=<?= $page_id ?>&post_id=<?= $post_id ?>" class="btn btn-primary <?= (!$user_id) ? "disabled" : "" ?>">
                         <i data-feather="message-circle"></i>
                         Start een chat
                     </a>

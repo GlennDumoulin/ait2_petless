@@ -10234,6 +10234,73 @@ h3 {
   margin-top: 50px;
 }
 
+.chat_wrapper {
+  position: relative;
+  margin: 75px 0;
+}
+.chat_wrapper h1 {
+  margin-bottom: 20px;
+}
+.chat_wrapper .back_btn {
+  position: absolute;
+  top: -50px;
+  left: 50px;
+  color: black;
+  transition: all 0.3s ease-in-out;
+}
+.chat_wrapper .back_btn:hover {
+  color: #2176d2;
+}
+.chat_wrapper .messages_list {
+  background-color: #99acb8;
+  border-radius: 20px;
+  padding: 50px 20px 20px;
+}
+.chat_wrapper .messages_list_item {
+  margin-top: 20px;
+}
+.chat_wrapper .messages_list_item:first-of-type {
+  margin-top: 0;
+}
+.chat_wrapper .messages_list_item .message_info {
+  width: fit-content;
+  font-size: 0.8rem;
+  margin: 0;
+}
+.chat_wrapper .messages_list_item .message_content {
+  width: fit-content;
+  max-width: 80%;
+  padding: 5px 20px;
+}
+.chat_wrapper .messages_list_item .message_content p {
+  margin: 0;
+}
+.chat_wrapper .messages_list_item.sent .message_info {
+  align-self: flex-end;
+}
+.chat_wrapper .messages_list_item.sent .message_content {
+  background-color: #2176d2;
+  color: white;
+  border-radius: 10px 0px 10px 20px;
+  box-shadow: 5px 5px 7px #0c4294;
+  align-self: flex-end;
+}
+.chat_wrapper .messages_list_item.received .message_content {
+  background-color: #081e35;
+  color: white;
+  border-radius: 0 10px 20px 10px;
+  box-shadow: 5px 5px 7px #30147e;
+}
+.chat_wrapper .messages_list .add_message {
+  margin-top: 50px;
+  border-top: 1px dashed #2176d2;
+  padding-top: 30px;
+}
+.chat_wrapper .messages_list .add_message textarea {
+  background-color: #a3c6db;
+  border: 1px solid #2176d2;
+}
+
 body {
   font-family: "Roboto", sans-serif;
   overflow-x: hidden;
