@@ -1,9 +1,18 @@
 <?php
+
     $post = (object) $post;
     $address = (str_replace(", ", "<br>", $post->address));
     $formatted_date = strftime("%a %e %b %Y", strtotime($post->found_on_lost_since));
-?>
 
+    if ($post->type === 'hond') {
+        $page_id = 2;
+    } elseif ($post->type === 'kat') {
+        $page_id = 3;
+    } else {
+        $page_id = 4;
+    }
+
+?>
 <div class="list_item col-6 col-md-4">
     <a href="./post_detail.php?p_id=<?= $page_id ?>&post_id=<?= $post->post_id ?>">
         <div class="item_content">

@@ -17,6 +17,40 @@ class Post extends BaseModel {
     public $created_on;
 
 
+    public function getByAuthor($user_id) {
+        global $db;
+        
+        $sql = 'SELECT *
+        FROM `' . $this->table . '`
+        WHERE `author_id` = :user_id
+        ORDER BY `created_on` DESC';
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute(
+            [
+                ":user_id" => $user_id
+            ]
+        );
+        return $pdo_statement->fetchAll();
+
+    }
+
+    public function getMyBookmarks($user_id) {
+        global $db;
+
+        $sql = 'SELECT *
+        FROM `' . $this->table . '`
+        INNER JOIN `bookmarks` ON `' . $this->table . '`.`post_id` = `bookmarks`.`post_id`
+        WHERE `bookmarks`.`user_id` = :user_id
+        ORDER BY `created_on` DESC';
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute(
+            [
+                ":user_id" => $user_id
+            ]
+        );
+        return $pdo_statement->fetchAll();
+    }
+
     public function getByType($offset, $perPage, $filters) {
         global $db;
 

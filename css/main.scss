@@ -8,6 +8,7 @@ $secundary: #081e35;
 @import "./listPage.scss";
 @import "./detailPage.scss";
 @import "./userPages.scss";
+@import "./myAccountPage.scss";
 @import "./newMessagePage.scss";
 @import "./chatPage.scss";
 
@@ -18,4 +19,8 @@ body {
 
 h1 {
     font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.8rem;
 }

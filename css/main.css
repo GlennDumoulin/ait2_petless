@@ -10179,6 +10179,13 @@ h3 {
   border-radius: 20px;
 }
 
+.my_account_wrapper {
+  margin: 50px 0;
+}
+.my_account_wrapper h2 {
+  margin: 30px 0 15px;
+}
+
 .title {
   margin-top: 75px;
 }
@@ -10308,6 +10315,10 @@ body {
 
 h1 {
   font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.8rem;
 }
 
 /*# sourceMappingURL=main.css.map */
