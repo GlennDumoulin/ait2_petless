@@ -5,9 +5,9 @@
                 <div class="footer_login">
                     <h1>Heb je al een account?</h1>
                     <p>
-                        <a href="#">Log je hier in</a>
+                        <a href="./login.php">Log je hier in</a>
                         of
-                        <a href="#">maak er nu één aan</a>
+                        <a href="./register.php">maak er nu één aan</a>
                     </p>
                 </div>
                 <div class="footer_sitemap">
@@ -16,13 +16,13 @@
                     <?php
 
                         foreach ($all_pages as $page) {
-                            switch($page['template']) {
-                                case 'posts':
-                                    echo '<a href="./index.php?p_id=' . $page['page_id'] . '&type=' . $page['type'] . '">' . $page['name'] . '</a>';
-                                    break;
-                                default :
-                                    echo '<a href="./index.php?p_id=' . $page['page_id'] . '">' . $page['name'] . '</a>';
-                                    break;
+                            $urlStart = '<a href="./index.php?p_id=';
+                            $urlEnd = '">' . $page['name'] . '</a>';
+
+                            if ($page['template'] == 'posts') {
+                                echo $urlStart . $page['page_id'] . '&type=' . $page['type'] . $urlEnd;
+                            } else {
+                                echo $urlStart . $page['page_id'] . $urlEnd;
                             }
                         }
 

@@ -17,7 +17,7 @@
     & .messages_list {
         background-color: #99acb8;
         border-radius: 20px;
-        padding: 50px 20px 20px;
+        padding: 20px 20px 30px;
         &_item {
             margin-top: 20px;
             &:first-of-type {
@@ -58,9 +58,9 @@
             }
         }
         & .add_message {
-            margin-top: 50px;
-            border-top: 1px dashed $primary;
-            padding-top: 30px;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px dashed $primary;
             & textarea {
                 background-color: #a3c6db;
                 border: 1px solid $primary;

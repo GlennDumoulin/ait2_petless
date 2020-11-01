@@ -91,6 +91,10 @@
             <div class="container">
                 <h1>Chat met <?= $receiver_name ?></h1>
                 <div class="messages_list d-flex flex-column">
+                    <form method="POST" class="add_message d-flex justify-content-between align-items-center">
+                        <textarea name="message" cols="100" rows="2"></textarea>
+                        <button href="#" class="btn btn-primary" name="add_message">chat verzenden</button>
+                    </form>
                     <?php
                         if ($messages) {
                             foreach ($messages as $message) {
@@ -100,10 +104,6 @@
                             echo '<p>Er zijn nog geen berichten om op te halen.</p>';
                         }
                     ?>
-                    <form method="POST" class="add_message d-flex justify-content-between align-items-center">
-                        <textarea name="message" cols="100" rows="2"></textarea>
-                        <button href="#" class="btn btn-primary" name="add_message">chat verzenden</button>
-                    </form>
                 </div>
             </div>
         </div>

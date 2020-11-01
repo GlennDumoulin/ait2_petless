@@ -15,7 +15,8 @@ class Chatmessage extends BaseModel {
 
         $sql = 'SELECT *
         FROM `' . $this->table . '`
-        WHERE `group_id` = :group_id';
+        WHERE `group_id` = :group_id
+        ORDER BY `send_at` DESC';
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->execute(
             [

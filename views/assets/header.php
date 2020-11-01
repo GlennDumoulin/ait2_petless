@@ -8,11 +8,11 @@
                 <a href="./edit_post.php" class="<?= ($user_id) ? '' : 'hidden' ?>" >bericht plaatsen</a>
                 <p>
                     <i data-feather="user"></i>
-                    <?php if ($user_id === 0) : ?>
+                    <?php if (!$user_id) : ?>
                         <a href="./login.php">inloggen</a> of
                         <a href="./register.php">registreren</a>
                     <?php else : ?>
-                        <a href="./account.php">mijn account</a> of
+                        <a href="./my_account.php">mijn account</a> of
                         <a href="./logout.php">uitloggen</a>
                     <?php endif; ?>
                 </p>
