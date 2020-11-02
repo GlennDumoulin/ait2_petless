@@ -1,13 +1,15 @@
 <?php
 
-    require_once '../app.php';
+    require '../app.php';
 
     // redirect if not logged in or not admin
     if (!$user_id) {
         header('location: ../login.php');
+        die();
     }
     if (!$user->isAdmin) {
         header('location: ../index.php');
+        die();
     }
 
     // get and delete user
@@ -23,8 +25,12 @@
     $bookmark_model->deleteByUser($user_id);
 
     // get and delete chatgroups of this user
-
+    $chatgroup_model = new Chatgroup();
+    $chatgroup_model->deleteByUser($user_id);
+    
     // get and delete chatmessages of this user
+    $chatmessage_model = new Chatmessage();
+    $chatmessage_model->deleteByUser($user_id);
 
 
     header('location: index.php#admin_control_users');

@@ -18,9 +18,11 @@
     // admin can see the account of other users
     $admin = $user->isAdmin;
     $other_user_id = $_GET['u_id'] ?? 0;
-    if ($user_id && $user->isAdmin) {
+    if ($other_user_id && $user->isAdmin) {
         $user_id = $other_user_id;
         $user = $user_model->getById($user_id);
+    } elseif ($other_user_id) {
+        header('location: my_account.php');
     }
 
     // get all user specific data

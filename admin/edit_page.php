@@ -11,9 +11,11 @@
     // redirect if not logged in or not admin
     if (!$user_id) {
         header('location: ../login.php');
+        die();
     }
     if (!$user->isAdmin) {
         header('location: ../index.php');
+        die();
     }
 
     // create new page or update one
