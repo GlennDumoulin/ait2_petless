@@ -13,26 +13,52 @@
     }
 
 ?>
-<div class="list_item col-6 col-md-4">
-    <a href="./post_detail.php?p_id=<?= $page_id ?>&post_id=<?= $post->post_id ?>">
-        <div class="item_content">
-            <img src="images/<?= $post->author_id ?>/<?= $post->image ?>">
-            <div class="overlay"></div>
-            <h1 class="race"><?= $post->race ?></h1>
-            <div class="info">
-                <?php if ($post->status == "found") : ?>
-                    <i data-feather="map-pin"></i>
-                    <p>Gevonden op <?= $formatted_date ?></p>
-                    <p><?= $address ?></p>
-                <?php elseif ($post->status == "lost") : ?>
-                    <i data-feather="frown"></i>
-                    <p>Gezocht sinds <?= $formatted_date ?></p>
-                    <p><?= $address ?></p>
-                <?php elseif ($post->status == "resolved") : ?>
-                    <i data-feather="smile"></i>
-                    <p>Bedankt om mij terug thuis te brengen</p>
-                <?php endif; ?>
+<?php if (strpos($_SERVER['PHP_SELF'], 'admin')) : ?>
+    <div class="list_item col-6 col-md-4">
+        <a href="../post_detail.php?p_id=<?= $page_id ?>&post_id=<?= $post->post_id ?>">
+            <div class="item_content">
+                <img src="../images/<?= $post->author_id ?>/<?= $post->image ?>">
+                <div class="overlay"></div>
+                <h1 class="race"><?= $post->race ?></h1>
+                <div class="info">
+                    <?php if ($post->status == "found") : ?>
+                        <i data-feather="map-pin"></i>
+                        <p>Gevonden op <?= $formatted_date ?></p>
+                        <p><?= $address ?></p>
+                    <?php elseif ($post->status == "lost") : ?>
+                        <i data-feather="frown"></i>
+                        <p>Gezocht sinds <?= $formatted_date ?></p>
+                        <p><?= $address ?></p>
+                    <?php elseif ($post->status == "resolved") : ?>
+                        <i data-feather="smile"></i>
+                        <p>Bedankt om mij terug thuis te brengen</p>
+                    <?php endif; ?>
+                </div>
             </div>
-        </div>
-    </a>
-</div>
+        </a>
+    </div>
+<?php else : ?>
+    <div class="list_item col-6 col-md-4">
+        <a href="./post_detail.php?p_id=<?= $page_id ?>&post_id=<?= $post->post_id ?>">
+            <div class="item_content">
+                <img src="images/<?= $post->author_id ?>/<?= $post->image ?>">
+                <div class="overlay"></div>
+                <h1 class="race"><?= $post->race ?></h1>
+                <div class="info">
+                    <?php if ($post->status == "found") : ?>
+                        <i data-feather="map-pin"></i>
+                        <p>Gevonden op <?= $formatted_date ?></p>
+                        <p><?= $address ?></p>
+                    <?php elseif ($post->status == "lost") : ?>
+                        <i data-feather="frown"></i>
+                        <p>Gezocht sinds <?= $formatted_date ?></p>
+                        <p><?= $address ?></p>
+                    <?php elseif ($post->status == "resolved") : ?>
+                        <i data-feather="smile"></i>
+                        <p>Bedankt om mij terug thuis te brengen</p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </a>
+    </div>
+<?php endif ?>

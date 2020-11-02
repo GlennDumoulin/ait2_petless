@@ -25,6 +25,9 @@
             header('location: post_detail.php?p_id=' . $page_id . '&post_id=' . $post_id);
         }
 
+        // get receiver data
+        $receiver = $user_model->getById($current_post->author_id);
+
         // check if chatgroup already exists and create one if needed
         $groupdata = (object) array(
             "post_id" => $post_id,
@@ -75,7 +78,7 @@
 
         $newChatmessage->addMessage();
 
-        header('location: chat.php?p_id=' . $page_id . '&post_id=' . $post_id);
+        header('location: chat.php?p_id=' . $page_id . '&post_id=' . $post_id . '&group_id=' . $group_id);
 
     }
 

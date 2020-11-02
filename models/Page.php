@@ -18,7 +18,9 @@ class Page extends BaseModel {
     private function getAll() {
         global $db;
 
-        $sql = 'SELECT `' . $this->pk . '`, `slug`, `name`, `type` FROM `' . $this->table . '` ORDER BY `page_order`';
+        $sql = 'SELECT `' . $this->pk . '`, `slug`, `name`, `type`
+        FROM `' . $this->table . '`
+        ORDER BY `page_order`';
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->execute();
         return $pdo_statement->fetchAll();
@@ -36,6 +38,7 @@ class Page extends BaseModel {
             ]
         );
         return $pdo_statement->fetchObject();
+
     }
 
     public function save() {
@@ -73,6 +76,20 @@ class Page extends BaseModel {
             $this->page_id = $db->lastInsertId();
             
         }
+
+    }
+
+    public function deleteById($page_id) {
+        global $db;
+
+        $sql = 'DELETE FROM `' . $this->table . '` WHERE `page_id` = :page_id';
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute(
+            [
+                ':page_id' => $page_id
+            ]
+        );
+
     }
 
 }

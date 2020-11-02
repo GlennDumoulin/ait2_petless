@@ -2,6 +2,14 @@
 
     $chatgroup = (object) $chatgroup;
 
+    if ($chatgroup->type == 'hond') {
+        $page_id = 2;
+    } elseif ($chatgroup->type == 'kat') {
+        $page_id = 3;
+    } else {
+        $page_id = 4;
+    }
+
     $status = '';
     if ($chatgroup->status == "found") {
         $status = 'gevonden';

@@ -16,6 +16,12 @@
     }
     &_pages {
         &_top {
+            & > a {
+                margin-left: 75px;
+                &:first-of-type {
+                    margin-left: 0;
+                }
+            }
             & p {
                 color: black;
                 margin-left: 75px;

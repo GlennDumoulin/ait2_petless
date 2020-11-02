@@ -71,4 +71,17 @@ class Bookmark extends BaseModel {
         );
     }
 
+    public function deleteByUser($user_id) {
+        global $db;
+
+        $sql = 'DELETE FROM `' . $this->table . '` WHERE `user_id` = :user_id';
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute(
+            [
+                ':user_id' => $user_id
+            ]
+        );
+
+    }
+
 }

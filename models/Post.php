@@ -17,6 +17,17 @@ class Post extends BaseModel {
     public $created_on;
 
 
+    public function getAll() {
+        global $db;
+
+        $sql = 'SELECT * FROM `' . $this->table . '`
+        ORDER BY `created_on` DESC';
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute();
+        return $pdo_statement->fetchAll();
+
+    }
+
     public function getByAuthor($user_id) {
         global $db;
         
@@ -188,6 +199,7 @@ class Post extends BaseModel {
             ]
         );
         return $pdo_statement->fetchObject();
+
     }
 
     public function save() {
@@ -225,6 +237,33 @@ class Post extends BaseModel {
             $insert_statement->execute( $data );
             
         }
+
+    }
+
+    public function deleteById($post_id) {
+        global $db;
+
+        $sql = 'DELETE FROM `' . $this->table . '` WHERE `post_id` = :post_id';
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute(
+            [
+                ':post_id' => $post_id
+            ]
+        );
+
+    }
+
+    public function deleteByUser($user_id) {
+        global $db;
+
+        $sql = 'DELETE FROM `' . $this->table . '` WHERE `author_id` = :user_id';
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute(
+            [
+                ':user_id' => $user_id
+            ]
+        );
+
     }
 
 }

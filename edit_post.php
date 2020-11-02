@@ -133,10 +133,11 @@
                         <input type="date" name="date" value="<?= ( $post_id ) ? $current_post->found_on_lost_since : '' ?>" />
                     </div>
                     <div class="img">
-                        <label for="img"
-                            ><?= ( $post_id ) ? "Selecteer uw foto of kies een nieuwe" : "Selecteer uw foto" ?>
-                            <b class="required">*</b></label
-                        >
+                        <label for="img">
+                            <?= ( $post_id ) ? "Selecteer uw foto of kies een nieuwe" : "Selecteer uw foto" ?>
+                            <b class="required">*</b>
+                            <br>(foto moet kleiner zijn dan 3MB)
+                        </label>
                         <input type="file" name="img" accept="image/*" required />
                     </div>
                 </div>

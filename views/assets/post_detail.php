@@ -78,7 +78,7 @@
                     </a>
                 <?php endif ?>
                 <?php if ($user_id && $user->isAdmin) : ?>
-                    <a href="#" class="btn btn-danger">
+                    <a href="./admin/delete_post.php?post_id=<?= $post_id ?>" class="btn btn-danger">
                         <i data-feather="alert-triangle"></i>
                         Bericht verwijderen
                     </a>

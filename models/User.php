@@ -13,6 +13,16 @@ class User extends BaseModel {
     public $isAdmin;
 
 
+    public function getAll() {
+        global $db;
+
+        $sql = 'SELECT * FROM `' . $this->table . '`';
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute();
+        return $pdo_statement->fetchAll();
+
+    }
+
     public function getById($user_id) {
         global $db;
 
@@ -20,6 +30,7 @@ class User extends BaseModel {
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->execute( [ ':u_id' => $user_id ] );
         return $pdo_statement->fetchObject();
+
     }
 
     public function getUserByEmail( string $email) {
@@ -28,8 +39,8 @@ class User extends BaseModel {
         $sql = 'SELECT * FROM `' . $this->table . '` WHERE `email` = :email';
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->execute( [ ':email' => $email ] );
-
         return $pdo_statement->fetchObject();
+
     }
 
     public function emailExists($email) {
@@ -43,6 +54,7 @@ class User extends BaseModel {
             ]
         );
         return (int) $pdo_statement->fetchColumn();
+
     }
 
     public function register($userInfo) {
@@ -59,6 +71,7 @@ class User extends BaseModel {
                 ':password' => $userInfo->password
             ]
         );
+
     }
 
     public function login($email) {
@@ -72,6 +85,20 @@ class User extends BaseModel {
             ]
         );
         return $pdo_statement->fetchObject();
+
+    }
+
+    public function deleteById($user_id) {
+        global $db;
+
+        $sql = 'DELETE FROM `' . $this->table . '` WHERE `user_id` = :user_id';
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute(
+            [
+                ':user_id' => $user_id
+            ]
+        );
+
     }
 
 }
