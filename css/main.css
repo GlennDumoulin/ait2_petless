@@ -10185,6 +10185,18 @@ h3 {
 .my_account_wrapper h2 {
   margin: 30px 0 15px;
 }
+.my_account_wrapper .my_chats .chatgroup.list_item a .item_content {
+  height: 150px;
+}
+@media (max-width: 991px) {
+  .my_account_wrapper .my_chats .chatgroup.list_item a .item_content {
+    height: 125px;
+  }
+}
+.my_account_wrapper .my_chats .chatgroup.list_item a .item_content .info {
+  font-size: 1.2rem;
+  bottom: 0;
+}
 
 .title {
   margin-top: 75px;
@@ -10289,7 +10301,7 @@ h3 {
   background-color: #2176d2;
   color: white;
   border-radius: 10px 0px 10px 20px;
-  box-shadow: 5px 5px 7px #0c4294;
+  box-shadow: -5px 5px 7px #0c4294;
   align-self: flex-end;
 }
 .chat_wrapper .messages_list_item.received .message_content {

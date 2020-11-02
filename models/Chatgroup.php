@@ -10,6 +10,39 @@ class Chatgroup extends BaseModel {
     public $second_user_id;
 
 
+    public function getByUser($user_id) {
+        global $db;
+
+        $sql = 'SELECT *
+        FROM `' . $this->table . '`
+        INNER JOIN `posts` ON `' . $this->table . '`.`post_id` = `posts`.`post_id`
+        WHERE `first_user_id` = :user_id OR `second_user_id` = :user_id';
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute(
+            [
+                ':user_id' => $user_id,
+            ]
+        );
+        return $pdo_statement->fetchAll();
+
+    }
+
+    public function getById($group_id) {
+        global $db;
+
+        $sql = 'SELECT *
+        FROM `' . $this->table . '`
+        WHERE `group_id` = :group_id';
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute(
+            [
+                ':group_id' => $group_id,
+            ]
+        );
+        return $pdo_statement->fetchObject();
+
+    }
+
     public function getGroup($groupdata) {
         global $db;
         

@@ -3,4 +3,22 @@
     & h2 {
         margin: 30px 0 15px;
     }
+    & .my_chats {
+        & .chatgroup {
+            &.list_item {
+                & a {
+                    & .item_content {
+                        height: 150px;
+                        @media (max-width: 991px) {
+                            height: 125px;
+                        }
+                        & .info {
+                            font-size: 1.2rem;
+                            bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

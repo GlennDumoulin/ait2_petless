@@ -7,7 +7,7 @@
         header('location: login.php');
     }
 
-    // get pages and posts data
+    // get pages, posts and chatgroup data
     $page_id = $_GET['p_id'] ?? 1;
     $current_page = Page::getById($page_id);
 
@@ -17,37 +17,46 @@
     $post_model = new Post();
     $current_post = $post_model->getById($post_id);
 
-    // get receiver data
-    $receiver = $user_model->getById($current_post->author_id);
-    $receiver_name = $receiver->firstname . ' ' . $receiver->lastname;
+    $group_id = $_GET['group_id'] ?? 0;
 
-    // redirect when entering chat with yourself
-    if ($user_id == $current_post->author_id) {
-        header('location: post_detail.php?p_id=' . $page_id . '&post_id=' . $post_id);
+    if (!$group_id) {
+        // redirect when entering chat with yourself
+        if ($user_id == $current_post->author_id) {
+            header('location: post_detail.php?p_id=' . $page_id . '&post_id=' . $post_id);
+        }
+
+        // check if chatgroup already exists and create one if needed
+        $groupdata = (object) array(
+            "post_id" => $post_id,
+            "sender" => $user_id,
+            "receiver" => $receiver->user_id
+        );
+        $chatgroup_model = new Chatgroup();
+        $total = $chatgroup_model->groupExists($groupdata);
+        
+        if (!$total) {
+            $newChatgroup = new Chatgroup();
+
+            $newChatgroup->post_id = $post_id;
+            $newChatgroup->first_user_id = $user_id;
+            $newChatgroup->second_user_id = $receiver->user_id;
+
+            $newChatgroup->createGroup();
+        }
+
+        // get group data
+        $current_group = $chatgroup_model->getGroup($groupdata);
+        $group_id = $current_group->group_id;
     }
 
-    // check if chatgroup already exists and create one if needed
-    $groupdata = (object) array(
-        "post_id" => $post_id,
-        "sender" => $user_id,
-        "receiver" => $receiver->user_id
-    );
+    // check if you are first or second user and get receiver data
     $chatgroup_model = new Chatgroup();
-    $total = $chatgroup_model->groupExists($groupdata);
-    
-    if (!$total) {
-        $newChatgroup = new Chatgroup();
-
-        $newChatgroup->post_id = $post_id;
-        $newChatgroup->first_user_id = $user_id;
-        $newChatgroup->second_user_id = $receiver->user_id;
-
-        $newChatgroup->createGroup();
+    $chatgroup = $chatgroup_model->getById($group_id);
+    $receiver = $user_model->getById($chatgroup->second_user_id);
+    if ($chatgroup->second_user_id == $user_id) {
+        $receiver = $user_model->getById($chatgroup->first_user_id);
     }
-
-    // get group data
-    $current_group = $chatgroup_model->getGroup($groupdata);
-    $group_id = $current_group->group_id;
+    $receiver_name = $receiver->firstname . ' ' . $receiver->lastname;
 
     // get chatmessages
     $messages_model = new Chatmessage();
