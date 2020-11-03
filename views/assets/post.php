@@ -1,9 +1,11 @@
 <?php
 
+    // create new object for current post and format some data
     $post = (object) $post;
     $address = (str_replace(", ", "<br>", $post->address));
     $formatted_date = strftime("%a %e %b %Y", strtotime($post->found_on_lost_since));
 
+    // set page_id based on type of the post
     if ($post->type === 'hond') {
         $page_id = 2;
     } elseif ($post->type === 'kat') {
@@ -13,6 +15,7 @@
     }
 
 ?>
+<!-- Check if the request comes from admin folder or not -->
 <?php if (strpos($_SERVER['PHP_SELF'], 'admin')) : ?>
     <div class="list_item col-6 col-md-4">
         <a href="../post_detail.php?p_id=<?= $page_id ?>&post_id=<?= $post->post_id ?>">

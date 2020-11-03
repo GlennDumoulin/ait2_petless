@@ -5,13 +5,14 @@
     // redirect if not logged in
     if (!$user_id) {
         header('location: login.php');
+        die();
     }
 
-    // get pages and posts data
+    // get current page and post data
     $page_id = $_GET['p_id'] ?? 1;
     $post_id = $_GET['post_id'] ?? 0;
 
-    // get bookmark data
+    // get bookmark data and check if it already exists
     $bookmark = (object) array(
         "user_id" => $user_id,
         "post_id" => $post_id
@@ -19,9 +20,8 @@
     $bookmark_model = new Bookmark();
     $total = $bookmark_model->bookmarkExists($bookmark);
 
+    // create new bookmark or delete it if it already exists
     if ($total) {
-
-        echo 'this bookmark already exists';
 
         $bookmark_model->removeBookmark($bookmark);
 
@@ -29,8 +29,6 @@
         die();
 
     } else {
-
-        echo 'no bookmarks found';
 
         $new_bookmark = new Bookmark();
 

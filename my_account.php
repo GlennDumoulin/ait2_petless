@@ -5,6 +5,7 @@
     // redirect if not logged in
     if (!$user_id) {
         header('location: login.php');
+        die();
     }
 
     // get pages and posts data
@@ -23,6 +24,7 @@
         $user = $user_model->getById($user_id);
     } elseif ($other_user_id) {
         header('location: my_account.php');
+        die();
     }
 
     // get all user specific data

@@ -2,6 +2,7 @@
 
     require 'app.php';
 
+    // get pages and post data
     $page_id = $_GET['p_id'] ?? 1;
     $current_page = Page::getById($page_id);
     

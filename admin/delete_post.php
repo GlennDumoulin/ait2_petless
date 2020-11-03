@@ -1,6 +1,6 @@
 <?php
 
-    require_once '../app.php';
+    require '../app.php';
 
     // redirect if not logged in or not admin
     if (!$user_id) {

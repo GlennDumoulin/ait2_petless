@@ -2,11 +2,13 @@
 
     require 'app.php';
 
+    // get pages data
     $page_id = $_GET['p_id'] ?? 1;
     $current_page = Page::getById($page_id);
 
     $all_pages = Page::getAll();
 
+    // select the template that will be used for current page
     $view = 'views/templates/' . $current_page->template . '.php';
     if(  ! file_exists($view) ) {
         $view = 'views/templates/page.php';

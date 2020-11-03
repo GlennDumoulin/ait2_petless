@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Gegenereerd op: 02 nov 2020 om 18:23
+-- Gegenereerd op: 03 nov 2020 om 15:18
 -- Serverversie: 5.7.24
 -- PHP-versie: 7.4.1
 
@@ -47,7 +47,11 @@ INSERT INTO `bookmarks` (`user_id`, `post_id`) VALUES
 (1, 8),
 (3, 9),
 (3, 2),
-(3, 5);
+(3, 5),
+(2, 7),
+(2, 4),
+(2, 6),
+(1, 10);
 
 -- --------------------------------------------------------
 
@@ -72,7 +76,9 @@ INSERT INTO `chatgroups` (`group_id`, `post_id`, `first_user_id`, `second_user_i
 (3, 3, 4, 3),
 (4, 5, 5, 2),
 (5, 7, 1, 5),
-(6, 3, 2, 3);
+(6, 3, 2, 3),
+(9, 7, 2, 5),
+(10, 9, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -102,7 +108,10 @@ INSERT INTO `chatmessages` (`group_id`, `sender_id`, `message`, `send_at`) VALUE
 (5, 1, 'Heey Jarne', '2020-11-01 21:55:46'),
 (2, 1, 'Het beestje lag er mag droevig bij dus het is momenteel bij mij thuis. Kan ik iets doen om te testen of dit uw hond is bv een naam waarop hij/zij zou reageren?', '2020-11-02 12:07:03'),
 (2, 1, 'Ik heb net opgemerkt dat hij/zij precies wel enthousiast lijkt te worden als ik hier over een Romanie spreek.', '2020-11-02 12:10:24'),
-(6, 2, 'Beste Elien indien u deze kat bij u in huis heeft genomen, zou u dan eens kunnen kijken of hij een stervormige witte vlek heeft rond zijn linkeroor. Hij laat zich graag aaien dus in zijn buurt komen zou geen probleem mogen zijn. Alvast bedankt', '2020-11-02 12:19:20');
+(6, 2, 'Beste Elien indien u deze kat bij u in huis heeft genomen, zou u dan eens kunnen kijken of hij een stervormige witte vlek heeft rond zijn linkeroor. Hij laat zich graag aaien dus in zijn buurt komen zou geen probleem mogen zijn. Alvast bedankt', '2020-11-02 12:19:20'),
+(9, 2, 'Dien ond ziet druit lijk dat em in den dik ga skitten', '2020-11-02 19:41:57'),
+(10, 2, 'toh een skoon beestjen wi', '2020-11-02 19:43:04'),
+(11, 1, 'Hallo Test', '2020-11-03 12:17:42');
 
 -- --------------------------------------------------------
 
@@ -160,7 +169,7 @@ INSERT INTO `posts` (`post_id`, `author_id`, `status`, `address`, `type`, `race`
 (1, 1, 'found', 'Vromondstraat 27, 9270 Kalken', 'hond', 'husky', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque accumsan eros lectus, nec ullamcorper lorem euismod vitae. Aenean a tortor tellus. Donec at gravida massa, sit amet auctor orci. Duis ipsum elit, molestie vitae urna sit amet, malesuada fringilla leo. Quisque commodo dui orci, nec elementum velit mattis vel. Maecenas augue massa, vulputate id nulla eget, convallis commodo ex. Suspendisse suscipit tellus ac mauris ullamcorper, eget mattis ex laoreet. Cras eu turpis rhoncus, tempor massa eu, feugiat nisi. Quisque ipsum purus, consequat at velit vitae, tincidunt tincidunt leo. Fusce et convallis augue, non blandit ante. Praesent ullamcorper diam et dignissim facilisis. Proin finibus faucibus hendrerit.', '2020-10-20', '5f9c62e09a4b7.jpg', '2020-10-30 19:00:48'),
 (2, 5, 'lost', 'Koedreef 3, 9070 Destelbergen', 'hond', 'pekinees', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eu est ac ex placerat feugiat gravida quis ligula. Praesent at enim consequat, placerat tellus et, malesuada mi. Proin feugiat nisi purus, quis iaculis nisl tempus ut. Donec ac nunc non neque efficitur hendrerit. Donec euismod faucibus sapien aliquam fermentum. In at tempus nulla. Phasellus aliquet ligula non elit ullamcorper placerat.', '2020-09-12', '5f9c655e7213a.jpg', '2020-10-30 19:11:26'),
 (3, 3, 'found', 'Kramershoek 8, 9940 Evergem', 'kat', 'perzisch', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus eu massa turpis. Nam lobortis at orci fermentum auctor. Pellentesque iaculis, lectus eu placerat lacinia, lorem diam efficitur sapien, ut placerat purus tortor eu ipsum. Pellentesque gravida dapibus hendrerit. Etiam elit libero, pellentesque eget ornare ut, molestie quis enim. Donec posuere elit sit amet nisi pharetra dignissim. Morbi ut placerat mauris. Fusce luctus eleifend metus sed laoreet.', '2020-10-12', '5f9c6716809ce.jpg', '2020-10-30 19:18:46'),
-(4, 3, 'found', 'Dendermondse Steenweg 31, 9300 Aalst', 'kat', 'naaktkat', 'Dit is een test voor het bewerken van een post.\r\nEnkel de eigenaar van een post kan dit doen.', '2020-08-31', '5f9d88f4a49e4.jpg', '2020-10-30 19:27:34'),
+(4, 3, 'resolved', 'Dendermondse Steenweg 31, 9300 Aalst', 'kat', 'naaktkat', 'Dit is een test voor het bewerken van een post.\r\nEnkel de eigenaar van een post kan dit doen.', '2020-08-31', '5f9d88f4a49e4.jpg', '2020-10-30 19:27:34'),
 (5, 2, 'found', 'Tuimelaarstraat 12, 9240 Zele', 'hond', 'bernard sennen', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sem eros, suscipit laoreet enim eget, scelerisque rhoncus purus. Praesent at vehicula arcu, eu mollis felis. Sed porttitor sodales risus, eu dictum erat gravida et. Mauris scelerisque nulla eget sapien mattis, non molestie risus congue. Etiam vestibulum dolor eu tellus maximus accumsan. Proin non nulla ut turpis aliquam maximus. Phasellus nec nunc vitae ex pulvinar scelerisque at sit amet libero.', '2020-10-30', '5f9d68885ba48.jpg', '2020-10-31 13:37:12'),
 (6, 1, 'lost', 'Bosstraatje 22, 9270 Kalken', 'hond', 'poedel', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sem eros, suscipit laoreet enim eget, scelerisque rhoncus purus. Praesent at vehicula arcu, eu mollis felis. Sed porttitor sodales risus, eu dictum erat gravida et. Mauris scelerisque nulla eget sapien mattis, non molestie risus congue. Etiam vestibulum dolor eu tellus maximus accumsan. Proin non nulla ut turpis aliquam maximus. Phasellus nec nunc vitae ex pulvinar scelerisque at sit amet libero.', '2020-10-26', '5f9d68f76a431.jpg', '2020-10-31 13:39:03'),
 (7, 5, 'lost', 'Ringvaartstraat 41, 9000 Gent', 'hond', 'bulldog', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sem eros, suscipit laoreet enim eget, scelerisque rhoncus purus. Praesent at vehicula arcu, eu mollis felis. Sed porttitor sodales risus, eu dictum erat gravida et. Mauris scelerisque nulla eget sapien mattis, non molestie risus congue. Etiam vestibulum dolor eu tellus maximus accumsan. Proin non nulla ut turpis aliquam maximus. Phasellus nec nunc vitae ex pulvinar scelerisque at sit amet libero.', '2020-10-18', '5f9d6b7250626.jpg', '2020-10-31 13:49:38'),
@@ -230,25 +239,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `chatgroups`
 --
 ALTER TABLE `chatgroups`
-  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `group_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT voor een tabel `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `page_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `page_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT voor een tabel `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

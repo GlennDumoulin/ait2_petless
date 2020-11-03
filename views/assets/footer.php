@@ -1,3 +1,4 @@
+<!-- Check if the request comes from admin folder or not -->
 <?php if (strpos($_SERVER['PHP_SELF'], 'admin')) : ?>
     <footer class="footer_wrapper">
         <div class="container">

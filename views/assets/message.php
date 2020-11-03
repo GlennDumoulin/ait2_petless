@@ -1,5 +1,6 @@
 <?php
 
+    // create new object for current message and format some data
     $message = (object) $message;
     $formatted_date = strftime("%a %e %b om %R", strtotime($message->send_at));
 

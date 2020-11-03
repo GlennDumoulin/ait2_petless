@@ -1,6 +1,6 @@
 <?php
 
-    require_once '../app.php';
+    require '../app.php';
 
     // get pages data
     $page_id = $_GET['p_id'] ?? 0;

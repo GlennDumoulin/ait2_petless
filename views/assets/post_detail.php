@@ -1,6 +1,6 @@
 <?php
 
-    // post detail info
+    // format some data for post detail
     $address = (str_replace(", ", "<br>", $post->address));
     $formatted_date = strftime("%a %e %b %Y", strtotime($post->found_on_lost_since));
     if ($post->status == "lost") {
@@ -11,7 +11,7 @@
         $status = "terug terecht";
     }
 
-    // bookmark data
+    // check if post is bookmarked by current user
     $bookmark = (object) array(
         "user_id" => $user_id,
         "post_id" => $post->post_id

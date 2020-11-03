@@ -2,6 +2,7 @@
 
     require 'app.php';
 
+    // get pages and user data
     $page_id = $_GET['p_id'] ?? 1;
     $current_page = Page::getById($page_id);
 
@@ -9,8 +10,8 @@
 
     $user_model = new User();
 
+    // log the user in if email and password are correct
     $loginMsg = '';
-
     if ( isset( $_POST['login'] ) ) {
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -24,6 +25,7 @@
 
                 $_SESSION['user_id'] = $user->user_id;
                 header('location: index.php');
+                die();
 
             } else {
 

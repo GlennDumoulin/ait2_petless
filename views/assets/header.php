@@ -1,9 +1,11 @@
 <?php
 
+    // get the current user from the session
     $session_user_id = $_SESSION['user_id'] ?? 0;
     $session_user = ($session_user_id) ? $user_model->getById($session_user_id) : false;
 
 ?>
+<!-- Check if the request comes from admin folder or not -->
 <?php if (strpos($_SERVER['PHP_SELF'], 'admin')) : ?>
     <header>
         <nav class="nav row no-gutters">

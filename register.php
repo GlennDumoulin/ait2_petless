@@ -2,6 +2,7 @@
 
     require 'app.php';
 
+    // get pages and user data
     $page_id = $_GET['p_id'] ?? 1;
     $current_page = Page::getById($page_id);
     
@@ -9,8 +10,8 @@
 
     $user_model = new User();
 
+    // create a new user if the email is unique
     $registerMsg = '';
-
     if ( isset( $_POST['register'] ) ) {
         $firstname = $_POST['firstname'] ?? '';
         $lastname = $_POST['lastname'] ?? '';
@@ -36,6 +37,7 @@
             $registerMsg = 'Gebruiker ' . $new_user_id . ' is aangemaakt!';
 
             header('location: login.php');
+            die();
         }
     }
 ?>

@@ -1,5 +1,6 @@
 <?php
 
+    // create new object for current chatgroup and format some data
     $chatgroup = (object) $chatgroup;
 
     if ($chatgroup->type == 'hond') {

@@ -5,9 +5,10 @@
     // redirect if not logged in
     if (!$user_id) {
         header('location: login.php');
+        die();
     }
 
-    // get pages and posts data
+    // get pages and post data
     $page_id = $_GET['p_id'] ?? 1;
     $current_page = Page::getById($page_id);
 
@@ -20,10 +21,11 @@
     // redirect when user is not the author
     if (($page_id && $post_id) && $user_id !== $current_post->author_id) {
         header('location: index.php');
+        die();
     }
 
+    // give img a unique id and upload into user specific folder
     $img = '';
-
     if ( isset( $_FILES['img']) && $_FILES['img']['size'] > 0 ) {
         $upload_dir = './images/' . $user_id . '/';
         if( ! is_dir( $upload_dir ) ) {
@@ -39,6 +41,7 @@
         move_uploaded_file($tmp_location, $new_location);
     }
 
+    // create or update a post
     if ( isset( $_POST['submit_post'] ) ) {
         $new_post = new Post();
 
@@ -54,6 +57,7 @@
 
         $new_post->save();
 
+        // redirect to list page depending on which type you just created or updated
         if ($new_post->type === 'hond') {
             header('location: index.php?p_id=2&type=hond');
         } elseif ($new_post->type === 'kat') {

@@ -5,9 +5,10 @@
     // redirect if not logged in
     if (!$user_id) {
         header('location: login.php');
+        die();
     }
 
-    // get pages, posts and chatgroup data
+    // get pages, post and chatgroup data
     $page_id = $_GET['p_id'] ?? 1;
     $current_page = Page::getById($page_id);
 
@@ -23,6 +24,7 @@
         // redirect when entering chat with yourself
         if ($user_id == $current_post->author_id) {
             header('location: post_detail.php?p_id=' . $page_id . '&post_id=' . $post_id);
+            die();
         }
 
         // get receiver data
@@ -79,6 +81,7 @@
         $newChatmessage->addMessage();
 
         header('location: chat.php?p_id=' . $page_id . '&post_id=' . $post_id . '&group_id=' . $group_id);
+        die();
 
     }
 

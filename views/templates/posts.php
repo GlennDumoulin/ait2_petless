@@ -1,5 +1,6 @@
 <?php
 
+    // get filters data
     $type = $_GET['type'] ?? '';
     $race = $_GET['race'] ?? '';
     $location = $_GET['location'] ?? '';
