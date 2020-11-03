@@ -10004,6 +10004,27 @@ h3 {
   text-decoration: underline;
 }
 
+.home {
+  margin: 75px 0;
+}
+.home_intro {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+.home_intro p {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+.home_intro p:last-of-type {
+  font-size: 1.2rem;
+  color: #081e35;
+  text-decoration: underline #28a745;
+}
+.home_recent > h1, .home_page_links > h1 {
+  margin: 50px 0 20px;
+}
+
 .filter_wrapper {
   height: 500px;
   background-image: url(../images/andere_bg.jpg);

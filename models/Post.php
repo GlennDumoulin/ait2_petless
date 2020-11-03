@@ -28,6 +28,18 @@ class Post extends BaseModel {
 
     }
 
+    public function getMostRecent() {
+        global $db;
+
+        $sql = 'SELECT * FROM `' . $this->table . '`
+        WHERE `status` != "resolved"
+        ORDER BY `created_on` DESC LIMIT 3';
+        $pdo_statement = $db->prepare($sql);
+        $pdo_statement->execute();
+        return $pdo_statement->fetchAll();
+
+    }
+
     public function getByAuthor($user_id) {
         global $db;
         
@@ -78,7 +90,7 @@ class Post extends BaseModel {
         
         $sql = 'SELECT *
         FROM `' . $this->table . '`
-        WHERE `type` = :type
+        WHERE `type` = :type AND `status` != "resolved"
         ' . $filterQuery . '
         ORDER BY `created_on` ' . $filters->sort_order . '
         LIMIT :offset, :perPage';
@@ -113,7 +125,7 @@ class Post extends BaseModel {
 
         $sql = 'SELECT *
         FROM `' . $this->table . '`
-        WHERE `type` != "hond" AND `type` != "kat"
+        WHERE `type` != "hond" AND `type` != "kat" AND `status` != "resolved"
         ' . $filterQuery . '
         ORDER BY `created_on` ' . $filters->sort_order . '
         LIMIT :offset, :perPage';
@@ -145,7 +157,7 @@ class Post extends BaseModel {
 
         $sql = 'SELECT COUNT(*)
         FROM `' . $this->table . '`
-        WHERE `type` = :type
+        WHERE `type` = :type AND `status` != "resolved"
         ' . $filterQuery . '';
         $pdo_statement = $db->prepare($sql);
         $pdo_statement->bindParam(':type', $filters->type);
@@ -176,7 +188,7 @@ class Post extends BaseModel {
 
         $sql = 'SELECT COUNT(*)
         FROM `' . $this->table . '`
-        WHERE `type` != "hond" AND `type` != "kat"
+        WHERE `type` != "hond" AND `type` != "kat" AND `status` != "resolved"
         ' . $filterQuery . '';
         $pdo_statement = $db->prepare($sql);
         if ($filters->type !== '' && $filters->type !== 'andere') { $pdo_statement->bindParam(':type', $filters->type); };

@@ -1,4 +1,6 @@
 <main>
-    <h1><?= $current_page->title ?></h1>
-    <div><?= $current_page->content ?></div>
+    <div class="container">
+        <h1><?= $current_page->title ?></h1>
+        <?= $current_page->content ?>
+    </div>
 </main>
